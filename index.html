@@ -5095,6 +5095,16 @@ var qrcode = function() {
     }
   }
 </style>
+<style>
+.upload-folder-link {display:flex;align-items:center;gap:14px;padding:16px 18px;border:1px solid #efd9a9;border-radius:14px;background:linear-gradient(120deg,#fffaf0,#fffdf8);color:#43351a;text-decoration:none;box-shadow:0 2px 7px rgba(122,88,24,.05);transition:border-color .15s ease,box-shadow .15s ease;}
+.upload-folder-link:hover {border-color:#d6aa51;box-shadow:0 4px 12px rgba(122,88,24,.12);}
+.upload-folder-link:focus-visible {outline:3px solid #c62026;outline-offset:3px;}
+.upload-folder-icon {display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;border-radius:12px;background:#ffedc1;color:#a46910;font-size:21px;}
+.upload-folder-copy {display:flex;flex:1;flex-direction:column;min-width:0;gap:4px;}
+.upload-folder-caption {font-size:11px;font-weight:600;color:#8b7245;}
+.upload-folder-name {font-size:14px;font-weight:700;line-height:1.4;overflow-wrap:anywhere;}
+.upload-folder-external {color:#9a7b3d;font-size:15px;flex-shrink:0;}
+</style>
 </head>
 
   <body>
@@ -7066,16 +7076,17 @@ var qrcode = function() {
                     "
                     >1</span
                   >
-                  Pilih Surat yang Akan Di-upload Dokumennya
+                  Surat yang Akan Diunggah Dokumennya
                 </h4>
 
-                <div class="form-row">
+                <div class="form-row" style="grid-template-columns: minmax(0, 1fr); flex-direction: column;">
                   <div class="form-group">
                     <label>Jenis Naskah Dinas <span class="req">*</span></label>
                     <select
                       id="upload-filter-kategori"
                       class="form-control"
-                      onchange="loadSuratOptionsForUpload()"
+                      disabled
+                      aria-describedby="upload-target-hint"
                     >
                       <option value="">-- Pilih Kategori --</option>
                       <optgroup label="Naskah Dinas Umum">
@@ -7140,29 +7151,14 @@ var qrcode = function() {
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Pilih Surat Keluar <span class="req">*</span></label
-                    ><input
-                      class="form-control"
-                      id="upload-search"
-                      type="search"
-                      aria-label="Cari surat untuk unggah"
-                      placeholder="Cari nomor atau perihal…"
-                      oninput="
-                        clearTimeout(uploadSearchTimer);
-                        uploadSearchTimer = setTimeout(
-                          () => loadSuratOptionsForUpload(),
-                          300,
-                        );
-                      "
-                    />
-                    <p class="hint">
-                      Maksimal 100 hasil; gunakan pencarian untuk surat lainnya.
-                    </p>
+                    <label for="upload-select-surat">Nomor Surat <span class="req">*</span></label>
                     <select
                       id="upload-select-surat"
                       class="form-control"
+                      disabled
+                      aria-describedby="upload-target-hint"
                       onchange="
-                        updateUploadFilePreview();
+                        updateUploadFilePreview(true);
                         showUploadFileInfo();
                       "
                       required
@@ -7174,6 +7170,8 @@ var qrcode = function() {
                   </div>
                 </div>
               </div>
+
+              <p id="upload-target-hint" class="hint">Jenis dan nomor surat mengikuti surat yang dipilih dari arsip. Pilih file dokumen, lalu unggah.</p>
 
               <div
                 id="reference-upload-folder"
@@ -7309,7 +7307,7 @@ var qrcode = function() {
                       justify-content: center;
                       font-size: 11px;
                     "
-                    >3</span
+                    >2</span
                   >
                   Pilih File Berkas Dokumen (PDF / DOCX / Gambar)
                 </h4>
@@ -8354,6 +8352,10 @@ var qrcode = function() {
 
       function invalidateClientData() {
         dataGeneration++;
+        tableRequestId++;
+        dashboardRequestId++;
+        _tableFilteredData = [];
+        _tableTotal = 0;
         if (typeof reportState !== "undefined") {
           reportExportCancelled = true;
           reportState.snapshot = null;
@@ -10047,8 +10049,17 @@ var qrcode = function() {
           document.getElementById("input-nomor-urut").value = nextNoFormatted;
           updateLivePreview();
 
-          // Sinkronkan juga nomor urut terbaru dari backend
-          fetchNextNomor();
+          if (canAccess('archive')) {
+            // Start on page one; old filters must not hide the newly saved letter.
+            resetArchiveFilters(false);
+            _tableCurrentPage = 1;
+            if (!activeArchiveCategories.includes(kat)) activeArchiveCategories.push(kat);
+            renderArchiveCategoryFilter();
+            setUiValue("filter-kategori", kat);
+            switchView("daftar-surat");
+          } else {
+            fetchNextNomor();
+          }
         }
       }
 
@@ -10123,14 +10134,11 @@ var qrcode = function() {
         document.getElementById("archive-feedback").textContent =
           "Memperbarui arsip…";
         tbody.setAttribute("aria-busy", "true");
-        if (
-          archiveMetadataGeneration !== dataGeneration ||
-          forceRefresh ||
-          Date.now() - archiveMetadataAt >= READ_CACHE_TTL
-        ) {
-          await loadCanonicalMetadata(forceRefresh);
-          if (requestId !== tableRequestId || !currentToken) return;
-        }
+        // The table is the priority. Refresh category choices after its rows arrive,
+        // so a metadata cache miss does not add another round trip before the table.
+        const needsMetadata = archiveMetadataGeneration !== dataGeneration ||
+          forceRefresh || Date.now() - archiveMetadataAt >= READ_CACHE_TTL;
+        const generation = dataGeneration;
         const params = {
           action: "list",
           sort: archiveSort.field,
@@ -10153,7 +10161,7 @@ var qrcode = function() {
         };
         try {
           const data = await readApi(params, forceRefresh);
-          if (requestId !== tableRequestId) return;
+          if (requestId !== tableRequestId || generation !== dataGeneration) return;
           _tableTotal = data.total;
           _tableFilteredData = data.data;
           if (
@@ -10180,6 +10188,7 @@ var qrcode = function() {
             (archiveMetadataError
               ? " · Pilihan jenis belum diperbarui; coba Perbarui."
               : "");
+          if (needsMetadata) void loadCanonicalMetadata(forceRefresh, true);
         } catch (err) {
           if (requestId !== tableRequestId || err.stale) return;
           _tableFilteredData = [];
@@ -10373,9 +10382,14 @@ var qrcode = function() {
         const icon = document.getElementById("icon-refresh-dashboard");
         icon?.classList.add("fa-spin");
         showChartLoading("all");
+        const generation = dataGeneration;
+        const isCurrent = () => requestId === dashboardRequestId &&
+          generation === dataGeneration && activeWorkspaceView === "dashboard";
+        // Handle a download failure immediately, even if data is still in flight.
+        const chartsReady = ensureCharts().then(() => null, error => error);
         try {
           const data = await readApi({ action: "stats" }, forceRefresh);
-          if (requestId !== dashboardRequestId) return;
+          if (!isCurrent()) return;
           cachedDashboardData = {
             ...processStatsBackendForDashboard(data.stats),
             ...{
@@ -10392,16 +10406,15 @@ var qrcode = function() {
           renderDashboardWork(cachedDashboardData);
           document.getElementById("stat-total-surat").innerText =
             cachedDashboardData.totalSurat;
-          try {
-            await ensureCharts();
-          } catch (e) {
-            showToast(e.message, "info");
+          const chartError = await chartsReady;
+          if (!isCurrent()) return;
+          if (chartError) {
+            showToast(chartError.message, "info");
             return;
           }
-          if (requestId !== dashboardRequestId) return;
           renderDashboardView(cachedDashboardData);
         } catch (err) {
-          if (requestId !== dashboardRequestId || err.stale) return;
+          if (!isCurrent() || err.stale) return;
           document.getElementById("dashboard-updated").textContent =
             "Dashboard belum diperbarui: " + err.message;
           showToast("Dashboard belum diperbarui: " + err.message, "error");
@@ -12847,14 +12860,30 @@ var qrcode = function() {
       }
 
       function bukaUploadFormDariTabel(sheetName, rowIndex) {
+        if (!canAccess('upload')) return;
+        const item = [window.currentDetailSurat, ..._tableFilteredData].find(
+          it => it && it.sheetName === sheetName && Number(it.rowIndex) === Number(rowIndex) && it.rowVersion,
+        );
+        // Clear the previous target before switchView's initial folder check.
+        uploadListRequest++;
+        window.uploadSuratOptionsCache = [];
+        const select = document.getElementById("upload-select-surat");
+        select.innerHTML = '<option value="">Memuat surat...</option>';
+        select.value = "";
+        document.getElementById("upload-file-input").value = "";
+        showUploadFileInfo();
         populateUploadKategoriDropdown(sheetName);
-        switchView("upload-dokumen");
-        const catSelect = document.getElementById("upload-filter-kategori");
-        if (catSelect && sheetName) {
-          catSelect.value = sheetName;
+        if (switchView("upload-dokumen") === false) return;
+        setUiValue("upload-filter-kategori", sheetName);
+        if (item) {
+          // Reuse the displayed snapshot; reference_folder verifies its version on the server.
+          window.uploadSuratOptionsCache = [item];
+          select.innerHTML = '<option value="0">' + escapeHtml(item.nomorLengkap) + '</option>';
+          select.value = "0";
+          updateUploadFilePreview(true);
+        } else {
+          loadSuratOptionsForUpload(rowIndex);
         }
-        loadSuratOptionsForUpload(rowIndex);
-        loadDriveFolderOptions();
       }
 
       // ============================================================
@@ -13047,8 +13076,7 @@ var qrcode = function() {
         loadRequiredReferenceFolder();
       }
 
-      let uploadSearchTimer = null,
-        uploadListRequest = 0;
+      let uploadListRequest = 0;
       async function loadSuratOptionsForUpload(targetRowIndex) {
         const requestId = ++uploadListRequest;
         window.uploadSuratOptionsCache=[];
@@ -13057,9 +13085,9 @@ var qrcode = function() {
           "upload-filter-kategori",
         ).value;
         const selectSurat = document.getElementById("upload-select-surat");
-        if (!sheetName) {
+        if (!sheetName || !targetRowIndex) {
           selectSurat.innerHTML =
-            '<option value="">-- Pilih Kategori Terlebih Dahulu --</option>';
+            '<option value="">Pilih surat dari arsip terlebih dahulu</option>';
           return;
         }
 
@@ -13067,20 +13095,20 @@ var qrcode = function() {
         selectSurat.innerHTML = '<option value="">Memuat surat...</option>';
         try {
           const res = await apiFetch(
-            `${getApiUrl()}?action=list&sheetName=${encodeURIComponent(sheetName)}&limit=100&excludeReserved=true&search=${encodeURIComponent(targetRowIndex ? "" : uiValue("upload-search"))}&rowIndex=${targetRowIndex || ""}`,
+            `${getApiUrl()}?action=list&sheetName=${encodeURIComponent(sheetName)}&limit=1&excludeReserved=true&rowIndex=${targetRowIndex || ""}`,
           );
           const data = await res.json();
           if (requestId !== uploadListRequest) return;
           if (data.success && data.data && data.data.length > 0) {
             if (requestId !== uploadListRequest) return;
             window.uploadSuratOptionsCache = data.data;
-            let opts = '<option value="">-- Pilih Surat Target --</option>';
+            let opts = '<option value="">-- Pilih Nomor Surat --</option>';
             data.data.forEach((st, idx) => {
               const isMatch = targetRowIndex && st.rowIndex == targetRowIndex;
-              opts += `<option value="${idx}" ${isMatch ? "selected" : ""}>[${escapeHtml(st.nomorUrut)}] ${escapeHtml(st.nomorLengkap)} - ${escapeHtml(String(st.perihal || "").substring(0, 35))}...</option>`;
+              opts += `<option value="${idx}" ${isMatch ? "selected" : ""}>${escapeHtml(st.nomorLengkap)}</option>`;
             });
             selectSurat.innerHTML = opts;
-            updateUploadFilePreview();
+            updateUploadFilePreview(true);
           } else {
             selectSurat.innerHTML =
               '<option value="">Tidak ada surat pada kategori ini</option>';
@@ -13088,12 +13116,13 @@ var qrcode = function() {
         } catch (e) {
           if (requestId === uploadListRequest)
             selectSurat.innerHTML =
-              '<option value="">Gagal memuat surat; cari kembali untuk mencoba lagi</option>';
+              '<option value="">Gagal memuat surat; buka kembali dari arsip</option>';
         }
       }
 
-      function updateUploadFilePreview() {
-        loadRequiredReferenceFolder();
+      function updateUploadFilePreview(checkFolder = false) {
+        // Selecting a file only changes its display name; it does not change the destination.
+        if (checkFolder) loadRequiredReferenceFolder();
         const selectIdx = document.getElementById("upload-select-surat").value;
         const fileInput = document.getElementById("upload-file-input");
         const previewBadge = document.getElementById("upload-rename-preview");
@@ -13421,7 +13450,7 @@ var qrcode = function() {
         archiveMetadataAt = 0,
         archiveMetadataError = "";
       let archiveMetadataOwner = "";
-      function renderArchiveCategoryFilter() {
+      function renderArchiveCategoryFilter(preserveSelection = false) {
         const owner = (currentUser?.username || "") + ":" + getApiUrl();
         if (owner !== archiveMetadataOwner) {
           archiveMetadataOwner = owner;
@@ -13433,7 +13462,11 @@ var qrcode = function() {
         const select = document.getElementById("filter-kategori");
         if (!select) return;
         const selected = select.value || "SEMUA";
-        const keys = activeArchiveCategories
+        const available = [...activeArchiveCategories];
+        const selectBefore = document.getElementById("filter-kategori")?.value;
+        if (preserveSelection && KATEGORI_META[selectBefore] && !available.includes(selectBefore))
+          available.push(selectBefore);
+        const keys = available
           .filter((key) => KATEGORI_META[key])
           .sort((a, b) =>
             categoryLabel(a).localeCompare(categoryLabel(b), "id"),
@@ -13468,10 +13501,12 @@ var qrcode = function() {
         if (selected !== "SEMUA" && !keys.includes(selected))
           _tableCurrentPage = 1;
       }
-      async function loadCanonicalMetadata(forceRefresh = false) {
-        renderArchiveCategoryFilter();
+      async function loadCanonicalMetadata(forceRefresh = false, preserveSelection = false) {
+        const generation = dataGeneration, token = currentToken;
+        renderArchiveCategoryFilter(preserveSelection);
         try {
           const data = await readApi({ action: "metadata" }, forceRefresh);
+          if (generation !== dataGeneration || token !== currentToken) return false;
           if (!data.categories)
             throw new Error(
               "Metadata kategori belum tersedia. Perbarui backend aplikasi.",
@@ -13496,10 +13531,10 @@ var qrcode = function() {
           archiveMetadataGeneration = dataGeneration;
           archiveMetadataAt = Date.now();
           archiveMetadataError = "";
-          renderArchiveCategoryFilter();renderReportCategoryChoices();
+          renderArchiveCategoryFilter(preserveSelection);renderReportCategoryChoices();
           return true;
         } catch (error) {
-          if (!error.stale) {
+          if (!error.stale && generation === dataGeneration && token === currentToken) {
             archiveMetadataError = error.message;renderReportCategoryChoices();
             showToast(
               "Pilihan jenis arsip belum diperbarui: " + error.message,
@@ -14321,15 +14356,14 @@ var qrcode = function() {
         });
       }
       async function ensureCharts() {
-        if (window.Chart) return;
+        if (window.Chart) { window.Chart.defaults.animation = false; return; }
         if (chartLibraryPromise) return chartLibraryPromise;
         chartLibraryPromise = new Promise((resolve, reject) => {
           const el = document.createElement("script");
           el.src =
             "https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js";
           el.onload = () => {
-            if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches)
-              window.Chart.defaults.animation = false;
+            window.Chart.defaults.animation = false;
             resolve();
           };
           el.onerror = () => {
@@ -15365,12 +15399,17 @@ var qrcode = function() {
       function uploadFolderSelectionKey(item) { return item ? [item.sheetName,item.rowIndex,item.rowVersion].join('|') : ''; }
       function showUploadFolderError(message) {
         const box=document.getElementById('reference-upload-folder');
+        if (/Data surat telah berubah|Baris surat tidak tersedia/.test(message)) {
+          box.innerHTML='<strong>Data surat telah berubah.</strong><p>Kembali ke arsip, perbarui data, lalu pilih surat kembali sebelum mengunggah.</p>';
+          const back=document.createElement('button');back.type='button';back.className='btn btn-secondary';back.textContent='Perbarui Arsip';
+          back.onclick=()=>{invalidateClientData();switchView('daftar-surat');};box.append(back);return;
+        }
         box.innerHTML='<strong>Folder tujuan belum siap.</strong><p>'+escapeHtml(String(message).replace(/^Error doPost:\s*/,''))+'</p><p>'+(currentUser?.role==='admin'?'Periksa pasangan Nama Jabatan dan Jenis Naskah Dinas di Referensi → Folder G Drive. Anda dapat menambahkan link folder atau menggunakan Buat Folder Massal.':'Minta administrator memeriksa pemetaan Nama Jabatan dan Jenis Naskah Dinas di Referensi → Folder G Drive.')+'</p>';
         const retry=document.createElement('button');retry.type='button';retry.className='btn btn-secondary';retry.textContent='Periksa Ulang Folder';retry.onclick=()=>loadRequiredReferenceFolder();box.appendChild(retry);
         if(currentUser?.role==='admin'){const setup=document.createElement('button');setup.type='button';setup.className='btn btn-secondary';setup.textContent='Buka Referensi Folder';setup.onclick=()=>{referenceKind='folder';switchView('referensi');};box.appendChild(setup);}
       }
       async function loadRequiredReferenceFolder() {
-        const request = ++referenceFolderRequest,
+        const request = ++referenceFolderRequest, generation = dataGeneration, token = currentToken,
           box = document.getElementById("reference-upload-folder");
         if (!box) return;
         verifiedUploadFolderKey="";
@@ -15379,7 +15418,14 @@ var qrcode = function() {
           item = window.uploadSuratOptionsCache?.[idx];
         box.textContent =
           "Pilih surat untuk melihat folder yang ditetapkan administrator.";
-        if (idx === "" || !item) return;
+        if (idx === "" || !item) {
+          box.textContent = "Buka surat dari Arsip, lalu pilih Unggah Dokumen.";
+          if (canAccess('archive')) {
+            const choose = document.createElement('button');choose.type='button';choose.className='btn btn-secondary';choose.textContent='Buka Arsip';
+            choose.onclick=()=>switchView('daftar-surat');box.append(choose);
+          }
+          return;
+        }
         box.textContent = "Memeriksa folder referensi…";
         try {
           const data = await readApi(
@@ -15391,12 +15437,16 @@ var qrcode = function() {
             },
             true,
           );
-          if (request !== referenceFolderRequest || uploadFolderSelectionKey(window.uploadSuratOptionsCache?.[document.getElementById("upload-select-surat").value])!==uploadFolderSelectionKey(item)) return;
+          if (request !== referenceFolderRequest || generation !== dataGeneration || token !== currentToken || uploadFolderSelectionKey(window.uploadSuratOptionsCache?.[document.getElementById("upload-select-surat").value])!==uploadFolderSelectionKey(item)) return;
           verifiedUploadFolderKey=uploadFolderSelectionKey(item);
           document.getElementById("btn-submit-upload").disabled=false;
-          box.innerHTML = `Folder tujuan: <a href="${escapeHtml(data.link)}" target="_blank" rel="noopener">${escapeHtml(data.name)}</a>`;
+          box.innerHTML = `<a class="upload-folder-link" href="${escapeHtml(data.link)}" target="_blank" rel="noopener noreferrer" aria-label="Buka folder ${escapeHtml(data.name)} di Google Drive (tab baru)">
+            <span class="upload-folder-icon" aria-hidden="true"><i class="fa-solid fa-folder-open"></i></span>
+            <span class="upload-folder-copy"><span class="upload-folder-caption">Folder tujuan dokumen</span><span class="upload-folder-name">${escapeHtml(data.name)}</span></span>
+            <i class="fa-solid fa-arrow-up-right-from-square upload-folder-external" aria-hidden="true"></i>
+          </a>`;
         } catch (e) {
-          if (request === referenceFolderRequest) showUploadFolderError(e.message);
+          if (request === referenceFolderRequest && generation === dataGeneration && token === currentToken && !e.stale) showUploadFolderError(e.message);
         }
       }
       function selectedSigner(){return referenceData?.ready ? referenceData.data.jabatan.find(j=>j.active&&j.id===document.getElementById('input-penandatangan').value):null;}
