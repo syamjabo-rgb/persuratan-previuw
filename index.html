@@ -5077,6 +5077,24 @@ var qrcode = function() {
 }));
 
 </script>
+<!-- Skala antarmuka; aturan cetak tetap menggunakan ukuran dokumen. -->
+<style id="app-display-scale">
+  @media screen {
+    :root { --app-display-scale: 0.9; }
+    html { zoom: var(--app-display-scale); }
+    body, #app-container, #main-content {
+      min-height: calc(100vh / var(--app-display-scale));
+      min-height: calc(100dvh / var(--app-display-scale));
+    }
+    #auth-overlay, #modal-klasifikasi, #modal-tujuan,
+    #modal-detail-surat, #modal-edit-surat {
+      right: 0;
+      bottom: 0;
+      width: auto !important;
+      height: auto !important;
+    }
+  }
+</style>
 </head>
 
   <body>
