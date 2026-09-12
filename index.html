@@ -2711,6 +2711,10 @@
 .profile-page{max-width:820px;margin:auto}.profile-page label{display:grid;gap:8px;margin:18px 0 8px;font-weight:600}.profile-page .profile-password-control{display:flex;gap:8px}.profile-password-control input{min-width:0;flex:1}.profile-page [hidden]{display:none!important}.profile-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.profile-info{display:flex;gap:24px;flex-wrap:wrap;background:#f8fafc;padding:16px;border-radius:12px;margin-top:24px}.profile-page fieldset{border:0;padding:0;min-width:0}.profile-page input:read-only{background:#f8fafc}.profile-page #profile-error{color:#b91c1c}.profile-page #profile-feedback{color:#047857}
 </style>
   <style>
+.report-simple [hidden]{display:none!important}.report-simple label{display:grid;gap:8px;font-size:13px;font-weight:600}.report-main-filters{display:grid;grid-template-columns:minmax(160px,1fr) minmax(220px,2fr) auto;gap:16px;align-items:end}.report-main-filters .toolbar{margin:0}.report-date-fields{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px}.report-date-fields label{flex:1;min-width:160px}.report-simple .filter-details{margin:12px 0;padding:8px 0}.report-simple .filter-details:not([open])>summary{margin-bottom:0}.report-simple summary{cursor:pointer;min-height:44px;align-content:center;font-weight:600}.report-category-picker{position:relative;border:1px solid #cbd5e1;border-radius:10px;background:white}.report-category-picker>summary{padding:10px 14px;font-size:13px}.report-category-picker>summary span{display:block;margin:5px 0 0 16px;font-weight:400;color:#64748b;overflow-wrap:anywhere}.report-category-popover{position:absolute;z-index:30;top:100%;left:0;right:0;background:white;padding:16px;border:1px solid #cbd5e1;border-radius:12px;box-shadow:0 12px 30px #0f172a20}.report-category-options{max-height:280px;overflow:auto}.report-simple .report-category-options label{display:flex;align-items:center;min-height:44px;padding:8px;font-weight:400}.report-category-options input{flex-shrink:0;accent-color:#bd1924}.report-simple .report-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.report-feedback{display:flex;align-items:center;gap:12px;margin-top:12px;font-size:13px}.report-feedback p{margin:0}.report-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:20px 0}.report-metrics>div{background:white;border:1px solid #e2e8f0;border-radius:14px;padding:20px}.report-metrics span{font-size:12px;color:#64748b}.report-metrics strong{display:block;font-size:28px;margin-top:8px}.report-metrics>div:last-child strong{color:#b91c1c}.report-result-tabs{display:flex;gap:4px;padding:4px;border-radius:12px;background:#f1f5f9}.report-result-tabs button{border:0;border-radius:9px;min-height:44px;padding:10px 14px;background:transparent;color:#475569;font:inherit;font-weight:600;cursor:pointer}.report-result-tabs button[aria-selected="true"]{background:#bd1924;color:white;box-shadow:0 2px 6px #bd192420}.report-result-tabs button:focus-visible{outline:3px solid #2563eb;outline-offset:2px}.report-simple .check-option{display:flex;align-items:center;min-height:44px}.report-simple .section-heading{flex-wrap:wrap;gap:12px}.report-simple .ref-pagination{flex-wrap:wrap;gap:12px}.report-simple .ref-pagination label{display:flex;align-items:center}.report-results[data-stale="true"] #report-summary{color:#b45309}.report-simple tfoot{background:#f8fafc;font-weight:700}.report-simple .kpu-table{min-width:900px}.report-simple .kpu-table th{white-space:nowrap!important}#view-laporan #print-preview-container .kpu-table td{min-width:110px;overflow-wrap:break-word}#view-laporan #print-preview-container .kpu-table td[data-column="reportNo"]{min-width:48px}#view-laporan #print-preview-container .kpu-table td[data-column="nomorLengkap"]{min-width:180px}#view-laporan #print-preview-container .kpu-table td[data-column="perihal"]{min-width:230px}.report-simple #report-group-summary:empty{display:none}.report-simple #report-filter-chips:empty{display:none}#report-download-menu{position:relative}#report-download-menu summary{list-style:none}#report-download-menu summary::after{content:" ▾"}.report-download-options{position:absolute;right:0;z-index:20;min-width:140px;padding:8px;background:white;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 4px 12px #0f172a20}.report-download-options button{display:block;min-height:44px;width:100%;text-align:left}#report-print-dialog{width:min(620px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;margin:auto;padding:24px;border:1px solid #e2e8f0;border-radius:18px;color:#0f172a}#report-print-dialog::backdrop{background:#0f172a88}#report-print-error{color:#b91c1c}#report-print-dialog .toolbar{margin-top:16px}.report-simple button:disabled{cursor:not-allowed;opacity:.6}
+@media(max-width:900px){.report-main-filters{grid-template-columns:1fr 1fr}.report-main-filters>.toolbar{grid-column:1/-1}.report-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:550px){.report-main-filters,.report-simple .report-grid{grid-template-columns:1fr}.report-main-filters>.toolbar{grid-column:auto}.report-metrics{gap:10px}.report-metrics>div{padding:14px}.report-metrics strong{font-size:24px}.report-category-popover{max-width:100%}.report-result-tabs{width:100%}.report-result-tabs button{flex:1}.report-simple .glass-card{padding:16px}}
+  </style>
+  <style>
 .mfa-dialog { width:min(420px,calc(100vw - 32px)); max-height:calc(100dvh - 32px); overflow:auto; text-align:left; transition:none; color:var(--text-primary); }
 .mfa-dialog[data-phase="login"] {height:var(--mfa-login-height,auto);}
 .mfa-dialog[data-phase="login"] #mfa-form {min-height:100%;display:flex;flex-direction:column;}
@@ -6925,576 +6929,43 @@ var qrcode = function() {
         </section>
 
         <!-- VIEW 4: CETAK LAPORAN -->
-        <section id="view-laporan" class="view-section">
-          <div class="report-intro">
-            <div>
-              <span class="eyebrow">PELAPORAN & REKAPITULASI</span>
-              <h3>Laporan sesuai kebutuhan Anda</h3>
-              <p>
-                Pilih laporan, tentukan kriteria, lalu periksa hasil sebelum
-                dicetak.
-              </p>
+        <section id="view-laporan" class="view-section report-simple">
+          <form id="report-controls" class="glass-card" onsubmit="event.preventDefault();generatePreviewReport()">
+            <div class="report-main-filters">
+              <label>Periode<select id="report-period" class="form-control" onchange="setReportPeriod(this.value)"><option value="month">Bulan Ini</option><option value="lastMonth">Bulan Lalu</option><option value="year">Tahun Ini</option><option value="custom">Rentang Khusus</option></select></label>
+              <details id="report-category-picker" class="report-category-picker"><summary>Jenis Naskah Dinas <span id="report-category-caption">Semua Jenis</span></summary><div class="report-category-popover"><button type="button" class="text-button" onclick="selectReportCategories(false)">Semua Jenis</button><div id="report-category-list" class="report-category-options"></div></div></details>
+              <div class="toolbar"><button id="report-apply" class="btn btn-primary" type="submit">Tampilkan</button><button class="btn btn-secondary" type="button" onclick="resetReportFilters()">Reset</button></div>
             </div>
-            <span class="badge badge-info">8 jenis laporan</span>
-          </div>
-          <form
-            id="report-controls"
-            class="glass-card"
-            onsubmit="
-              event.preventDefault();
-              generatePreviewReport();
-            "
-          >
-            <div class="section-heading">
-              <h3>1. Jenis laporan & periode</h3>
-              <button
-                type="button"
-                class="btn btn-secondary"
-                onclick="resetReportFilters()"
-              >
-                Reset
-              </button>
-            </div>
-            <div class="report-grid">
-              <div class="form-group">
-                <label for="report-type">Jenis laporan</label>
-                <select
-                  id="report-type"
-                  class="form-control"
-                  onchange="onReportTypeChange()"
-                >
-                  <option value="register">Register Surat Keluar</option>
-                  <option value="nota">Register Nota Dinas</option>
-                  <option value="summary">Rekapitulasi Surat</option>
-                  <option value="status">Status Penyelesaian</option>
-                  <option value="documents">Kelengkapan Dokumen</option>
-                  <option value="numbering">Penggunaan Nomor</option>
-                  <option value="staff">Aktivitas Petugas</option>
-                  <option value="custom">Laporan Kustom</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="report-period">Periode cepat</label>
-                <select
-                  id="report-period"
-                  class="form-control"
-                  onchange="setReportPeriod(this.value)"
-                >
-                  <option value="month">Bulan Ini</option>
-                  <option value="lastMonth">Bulan Lalu</option>
-                  <option value="today">Hari Ini</option>
-                  <option value="week">Minggu Ini</option>
-                  <option value="year">Tahun Ini</option>
-                  <option value="custom">Rentang Khusus</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="laporan-tgl-awal">Tanggal mulai</label>
-                <input
-                  id="laporan-tgl-awal"
-                  class="form-control"
-                  type="date"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="laporan-tgl-akhir">Tanggal selesai</label>
-                <input
-                  id="laporan-tgl-akhir"
-                  class="form-control"
-                  type="date"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="report-date-basis">Dasar tanggal</label>
-                <select id="report-date-basis" class="form-control">
-                  <option value="tanggal">Tanggal Surat</option>
-                  <option value="waktuInput">Tanggal Pencatatan</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="report-group">Kelompok naskah</label>
-                <select id="report-group" class="form-control">
-                  <option value="SEMUA">Semua Naskah</option>
-                  <option value="SK">Surat Keluar Umum</option>
-                  <option value="ND">Nota Dinas</option>
-                </select>
-              </div>
-            </div>
-            <details class="filter-details" open>
-              <summary>
-                Jenis naskah dinas
-                <span class="hint">Bisa memilih beberapa</span>
-              </summary>
-              <input
-                id="report-category-search"
-                class="form-control"
-                placeholder="Cari jenis naskah…"
-                aria-label="Cari jenis naskah"
-                oninput="filterCategoryChecks(this.value)"
-              />
-              <div class="toolbar">
-                <button
-                  type="button"
-                  class="text-button"
-                  onclick="selectReportCategories(true)"
-                >
-                  Pilih Semua
-                </button>
-                <button
-                  type="button"
-                  class="text-button"
-                  onclick="selectReportCategories(false)"
-                >
-                  Kosongkan pilihan
-                </button>
-              </div>
-              <div
-                id="report-category-list"
-                class="check-grid category-list"
-              ></div>
-              <p class="hint">
-                Tanpa pilihan berarti semua kategori. Beberapa pilihan berarti
-                salah satu kategori boleh cocok.
-              </p>
-            </details>
-            <details class="filter-details">
-              <summary>
-                2. Filter lanjutan
-                <span class="hint"
-                  >Status, dokumen, pihak terkait, dan nomor</span
-                >
-              </summary>
-              <div class="report-grid">
-                <div class="form-group">
-                  <label for="report-document">Kelengkapan berkas</label>
-                  <select id="report-document" class="form-control">
-                    <option value="all">Semua</option>
-                    <option value="present">Sudah Ada Dokumen</option>
-                    <option value="missing">Belum Ada Dokumen</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="report-year">Tahun penomoran</label>
-                  <input
-                    id="report-year"
-                    class="form-control"
-                    type="number"
-                    min="1900"
-                    max="9999"
-                    placeholder="Semua tahun"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="report-sender">Pengirim / jabatan</label>
-                  <input
-                    id="report-sender"
-                    class="form-control"
-                    type="search"
-                    placeholder="Cari nama atau jabatan"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="report-recipient">Tujuan / penerima</label>
-                  <input
-                    id="report-recipient"
-                    class="form-control"
-                    type="search"
-                    placeholder="Cari penerima atau instansi"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="report-staff">Petugas pencatat</label>
-                  <input
-                    id="report-staff"
-                    class="form-control"
-                    type="text"
-                    placeholder="Pisahkan beberapa username dengan |"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="report-search"
-                    >Nomor, perihal, atau keterangan</label
-                  >
-                  <input
-                    id="report-search"
-                    class="form-control"
-                    type="search"
-                    placeholder="Kata kunci"
-                  />
-                </div>
-              </div>
-              <div class="report-grid">
-                <fieldset>
-                  <legend>Status surat</legend>
-                  <div class="check-grid">
-                    <label class="check-option"
-                      ><input
-                        type="checkbox"
-                        name="report-status"
-                        value="Paraf Kabag/Kabid"
-                      />Paraf Kabag/Kabid</label
-                    >
-                    <label class="check-option">
-                      <input
-                        type="checkbox"
-                        name="report-status"
-                        value="Draft"
-                      />
-                      Draft</label
-                    >
-                    <label class="check-option">
-                      <input
-                        type="checkbox"
-                        name="report-status"
-                        value="Ditandatangani"
-                      />
-                      Ditandatangani</label
-                    >
-                    <label class="check-option">
-                      <input
-                        type="checkbox"
-                        name="report-status"
-                        value="Sudah Kirim"
-                      />
-                      Sudah Kirim</label
-                    >
-                    <label class="check-option">
-                      <input
-                        type="checkbox"
-                        name="report-status"
-                        value="Sudah Terima"
-                      />
-                      Sudah Terima</label
-                    >
-                  </div>
-                </fieldset>
-                <fieldset>
-                  <legend>Sifat surat</legend>
-                  <div class="check-grid">
-                    <label class="check-option">
-                      <input
-                        type="checkbox"
-                        name="report-sifat"
-                        value="Biasa"
-                      />
-                      Biasa</label
-                    >
-                    <label class="check-option">
-                      <input
-                        type="checkbox"
-                        name="report-sifat"
-                        value="Penting"
-                      />
-                      Penting</label
-                    >
-                    <label class="check-option">
-                      <input
-                        type="checkbox"
-                        name="report-sifat"
-                        value="Segera"
-                      />
-                      Segera</label
-                    >
-                    <label class="check-option">
-                      <input
-                        type="checkbox"
-                        name="report-sifat"
-                        value="Amat Segera"
-                      />
-                      Amat Segera</label
-                    >
-                    <label class="check-option">
-                      <input
-                        type="checkbox"
-                        name="report-sifat"
-                        value="Rahasia"
-                      />
-                      Rahasia</label
-                    >
-                  </div>
-                </fieldset>
-              </div>
-              <div class="report-grid">
-                <div class="form-group">
-                  <label for="report-number-from">Nomor urut dari</label>
-                  <input
-                    id="report-number-from"
-                    class="form-control"
-                    type="number"
-                    min="1"
-                    placeholder="Opsional"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="report-number-to">Nomor urut sampai</label>
-                  <input
-                    id="report-number-to"
-                    class="form-control"
-                    type="number"
-                    min="1"
-                    placeholder="Opsional"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="report-number-state">Penggunaan nomor</label>
-                  <select
-                    id="report-number-state"
-                    class="form-control"
-                    disabled
-                  >
-                    <option value="all">Terpakai & Cadangan</option>
-                    <option value="used">Terpakai</option>
-                    <option value="reserved">Cadangan / Booking</option>
-                  </select>
-                </div>
-              </div>
-              <p class="hint">
-                Rentang nomor memerlukan satu kategori dan tahun. Nomor cadangan
-                hanya termasuk dalam laporan Penggunaan Nomor. Tanggal perubahan
-                status historis belum dicatat.
-              </p>
-            </details>
-            <details class="filter-details">
-              <summary>3. Isi laporan & format cetak</summary>
-              <div class="report-grid">
-                <div class="form-group">
-                  <label for="report-mode">Bentuk</label>
-                  <select id="report-mode" class="form-control">
-                    <option value="detail">Rincian surat</option>
-                    <option value="summary">Ringkasan jumlah</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="report-group-by">Kelompokkan</label>
-                  <select id="report-group-by" class="form-control">
-                    <option value="">Tanpa kelompok</option>
-                    <option value="kategoriName">Kategori</option>
-                    <option value="bulan">Bulan</option>
-                    <option value="status">Status</option>
-                    <option value="tujuan">Tujuan</option>
-                    <option value="diinputOleh">Petugas</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="report-sort">Urutkan</label>
-                  <select id="report-sort" class="form-control">
-                    <option value="tanggal">Tanggal Surat</option>
-                    <option value="nomorUrut">Nomor Urut</option>
-                    <option value="kategoriName">Kategori</option>
-                    <option value="diinputOleh">Petugas</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="report-direction">Arah urutan</label>
-                  <select id="report-direction" class="form-control">
-                    <option value="desc">Menurun</option>
-                    <option value="asc">Menaik</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="report-paper">Ukuran kertas</label>
-                  <select id="report-paper" class="form-control">
-                    <option value="A4">A4 — 210 × 297 mm</option>
-                    <option value="F4">F4 — 210 × 330 mm</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="report-orientation">Orientasi</label>
-                  <select id="report-orientation" class="form-control">
-                    <option value="landscape">Landscape</option>
-                    <option value="portrait">Portrait</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="report-margin">Margin (mm)</label>
-                  <input
-                    id="report-margin"
-                    class="form-control"
-                    type="number"
-                    value="12"
-                    min="5"
-                    max="30"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="report-font-size">Ukuran teks cetak (pt)</label>
-                  <input
-                    id="report-font-size"
-                    class="form-control"
-                    type="number"
-                    value="9"
-                    min="7"
-                    max="14"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="report-sign-title">Jabatan pengesah</label>
-                  <input
-                    id="report-sign-title"
-                    class="form-control"
-                    value="Kepala Bagian Tata Usaha"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="report-sign-name">Nama pengesah</label>
-                  <input
-                    id="report-sign-name"
-                    class="form-control"
-                    placeholder="Nama pejabat"
-                  />
-                </div>
-              </div>
-              <fieldset>
-                <legend>Kolom rincian</legend>
-                <div id="report-columns" class="check-grid"></div>
-              </fieldset>
-              <div class="toolbar">
-                <label class="check-option">
-                  <input id="report-show-kop" type="checkbox" checked /> Kop
-                  KPU</label
-                >
-                <label class="check-option">
-                  <input id="report-show-sign" type="checkbox" checked />
-                  Pengesahan</label
-                >
-                <label class="check-option">
-                  <input id="report-show-filters" type="checkbox" checked />
-                  Ringkasan filter</label
-                >
-              </div>
-            </details>
-            <div class="preset-bar">
-              <div class="form-group">
-                <label for="report-preset">Preset laporan</label>
-                <select
-                  id="report-preset"
-                  class="form-control"
-                  onchange="applyReportPreset(this.value)"
-                >
-                  <option value="">Pilih preset…</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="report-preset-name">Nama preset pribadi</label>
-                <input
-                  id="report-preset-name"
-                  class="form-control"
-                  placeholder="Contoh: Rekap bulanan TU"
-                  maxlength="60"
-                />
-              </div>
-              <button
-                type="button"
-                class="btn btn-secondary"
-                onclick="saveReportPreset()"
-              >
-                Simpan Preset
-              </button>
-              <button
-                type="button"
-                class="text-button"
-                onclick="deleteReportPreset()"
-              >
-                Hapus Preset Pribadi
-              </button>
-            </div>
-            <p class="hint">
-              Preset pribadi tersimpan pada perangkat dan akun ini.
-            </p>
-            <div class="report-apply">
-              <p id="report-status" role="status" aria-live="polite">
-                Atur kriteria lalu tampilkan pratinjau.
-              </p>
-              <button id="report-apply" class="btn btn-primary" type="submit">
-                <i aria-hidden="true" class="fa-solid fa-filter"> </i> Terapkan
-                Filter
-              </button>
-            </div>
+            <div id="report-custom-dates" class="report-date-fields" hidden><label>Tanggal mulai<input id="laporan-tgl-awal" type="date" class="form-control" required></label><label>Tanggal selesai<input id="laporan-tgl-akhir" type="date" class="form-control" required></label></div>
+            <p id="report-period-caption" class="hint"></p>
+            <details id="report-extra-filters" class="filter-details"><summary>Filter Tambahan</summary><div class="report-grid">
+              <label>Kata kunci<input id="report-search" type="search" class="form-control" placeholder="Nomor, perihal, pengirim, tujuan, atau keterangan"></label>
+              <label>Status<select id="report-filter-status" class="form-control"><option value="">Semua Status</option><option value="Draft">Draf</option><option value="Paraf Kabag/Kabid">Paraf Kabag/Kabid</option><option value="Ditandatangani">Tanda Tangan</option><option value="Sudah Kirim">Terkirim</option><option value="Sudah Terima">Sudah Diterima (arsip lama)</option></select></label>
+              <label>Kelengkapan Dokumen<select id="report-document" class="form-control"><option value="all">Semua Dokumen</option><option value="present">Sudah Ada Dokumen</option><option value="missing">Belum Ada Dokumen</option></select></label>
+              <label>Sifat Surat<select id="report-filter-sifat" class="form-control"><option value="">Semua Sifat</option><option>Biasa</option><option>Penting</option><option>Segera</option><option>Amat Segera</option><option>Rahasia</option></select></label>
+              <label>Dasar Tanggal<select id="report-date-basis" class="form-control"><option value="tanggal">Tanggal Surat</option><option value="waktuInput">Tanggal Pencatatan</option></select></label>
+            </div></details>
+            <div id="report-filter-chips" class="toolbar" aria-label="Filter tambahan aktif"></div>
+            <div class="report-feedback"><p id="report-status" role="status" aria-live="polite">Memuat laporan bulan ini…</p><button id="report-retry" hidden type="button" class="text-button" onclick="generatePreviewReport()">Coba Lagi</button></div>
           </form>
-          <div id="report-results" class="glass-card report-results">
-            <div class="section-heading">
-              <div>
-                <h3>Pratinjau laporan</h3>
-                <p id="report-summary" class="hint">
-                  Belum ada laporan yang dibuat.
-                </p>
-              </div>
-              <div class="toolbar">
-                <button
-                  id="report-print"
-                  class="btn btn-primary"
-                  disabled
-                  onclick="exportReport('print')"
-                >
-                  <i aria-hidden="true" class="fa-solid fa-print"> </i> Cetak /
-                  PDF
-                </button>
-                <button
-                  id="report-xlsx"
-                  class="btn btn-secondary"
-                  disabled
-                  onclick="exportReport('xlsx')"
-                >
-                  Excel
-                </button>
-                <button
-                  id="report-csv"
-                  class="btn btn-secondary"
-                  disabled
-                  onclick="exportReport('csv')"
-                >
-                  CSV
-                </button>
-                <button
-                  id="report-cancel-export"
-                  class="btn btn-secondary"
-                  hidden
-                  onclick="cancelReportExport()"
-                >
-                  Batalkan
-                </button>
-              </div>
-            </div>
-            <div
-              id="report-filter-chips"
-              class="toolbar"
-              aria-label="Filter aktif"
-            ></div>
-            <div id="report-group-summary" class="group-summary"></div>
-            <div id="print-preview-container" class="table-container">
-              <table class="kpu-table">
-                <thead id="report-table-head"></thead>
-                <tbody id="report-table-body">
-                  <tr>
-                    <td>Terapkan filter untuk menampilkan laporan.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="section-heading">
-              <span id="report-page-label" class="hint"> </span>
-              <div class="toolbar">
-                <button
-                  id="report-prev"
-                  class="btn btn-secondary"
-                  disabled
-                  onclick="goReportPage(-1)"
-                >
-                  Sebelumnya
-                </button>
-                <button
-                  id="report-next"
-                  class="btn btn-secondary"
-                  disabled
-                  onclick="goReportPage(1)"
-                >
-                  Berikutnya
-                </button>
-              </div>
-            </div>
+          <div id="report-metrics" class="report-metrics" aria-label="Ringkasan seluruh hasil laporan">
+            <div><span>Total Surat</span><strong id="report-total">—</strong></div><div><span>Dalam Proses</span><strong id="report-in-progress">—</strong></div><div><span>Terkirim</span><strong id="report-sent">—</strong></div><div><span>Belum Ada Dokumen</span><strong id="report-missing">—</strong></div>
           </div>
+          <div id="report-results" class="glass-card report-results">
+            <div class="section-heading"><div class="report-result-tabs" role="tablist" aria-label="Tampilan hasil"><button type="button" role="tab" id="report-detail-tab" aria-selected="true" aria-controls="report-result-panel" onclick="setReportResultView('detail')">Daftar Surat</button><button type="button" role="tab" id="report-recap-tab" tabindex="-1" aria-selected="false" aria-controls="report-result-panel" onclick="setReportResultView('summary')">Rekap per Jenis</button></div>
+              <div class="toolbar"><button id="report-print" class="btn btn-primary" disabled onclick="openReportPrint()">Cetak / PDF</button><details id="report-download-menu"><summary class="btn btn-secondary">Unduh</summary><div class="report-download-options"><button id="report-xlsx" type="button" class="text-button" disabled onclick="exportReport('xlsx')">Excel</button><button id="report-csv" type="button" class="text-button" disabled onclick="exportReport('csv')">CSV</button></div></details><button id="report-cancel-export" class="btn btn-secondary" hidden onclick="cancelReportExport()">Batalkan</button></div>
+            </div>
+            <p id="report-summary" class="hint">Belum ada laporan.</p><p id="report-group-summary" class="hint"></p>
+            <details id="report-column-panel" class="filter-details"><summary>Atur Kolom</summary><div id="report-columns" class="check-grid"></div><p class="hint">Pilihan berlaku untuk tabel, cetak, dan unduhan. Minimal satu kolom.</p></details>
+            <div id="report-result-panel" role="tabpanel" aria-labelledby="report-detail-tab"><div id="print-preview-container" class="table-container"><table class="kpu-table"><thead id="report-table-head"></thead><tbody id="report-table-body"><tr><td>Memuat laporan…</td></tr></tbody><tfoot id="report-table-foot"></tfoot></table></div></div>
+            <div class="ref-pagination"><label>Per halaman <select id="report-page-size" class="form-control" onchange="changeReportPageSize(this.value)"><option>25</option><option>50</option><option>100</option></select></label><span id="report-page-label" class="hint"></span><div class="toolbar"><button id="report-prev" class="btn btn-secondary" disabled onclick="goReportPage(-1)" aria-label="Halaman laporan sebelumnya">←</button><button id="report-next" class="btn btn-secondary" disabled onclick="goReportPage(1)" aria-label="Halaman laporan berikutnya">→</button></div></div>
+          </div>
+          <dialog id="report-print-dialog" aria-labelledby="report-print-title"><form onsubmit="event.preventDefault();confirmReportPrint()"><h3 id="report-print-title">Cetak / PDF</h3><p class="hint">Cetak seluruh hasil pada tampilan yang dipilih.</p><div class="report-grid">
+            <label>Kertas<select id="report-paper" class="form-control"><option>A4</option><option>F4</option></select></label><label>Orientasi<select id="report-orientation" class="form-control"><option value="landscape">Landscape</option><option value="portrait">Portrait</option></select></label>
+            <label>Margin (mm)<input id="report-margin" type="number" class="form-control" min="5" max="30" value="12"></label><label>Ukuran teks (pt)<input id="report-font-size" type="number" class="form-control" min="7" max="14" value="9"></label></div>
+            <div class="toolbar"><label class="check-option"><input id="report-show-kop" type="checkbox" checked>Kop KPU</label><label class="check-option"><input id="report-show-filters" type="checkbox" checked>Ringkasan filter</label><label class="check-option"><input id="report-show-sign" type="checkbox" onchange="toggleReportSignature()">Pengesahan</label></div>
+            <div id="report-sign-fields" class="report-grid" hidden><label>Jabatan pengesah<input id="report-sign-title" class="form-control" maxlength="150" value="Kepala Bagian Tata Usaha"></label><label>Nama pengesah<input id="report-sign-name" class="form-control" maxlength="150"></label></div><p id="report-print-error" role="alert"></p>
+            <div class="toolbar"><button type="button" class="btn btn-secondary" onclick="closeReportPrint()">Batal</button><button type="submit" class="btn btn-primary">Cetak / Simpan PDF</button></div></form></dialog>
         </section>
 
         <!-- VIEW 3.5: UPLOAD DOKUMEN BER-TTD -->
@@ -8870,6 +8341,8 @@ var qrcode = function() {
           reportState.snapshot = null;
           reportState.rows = [];
           reportState.pages.clear();
+          clearReportMetrics();
+          if(!currentToken){reportState.initialized=false;reportState.owner="";}
           markReportDirty();
           document.getElementById("report-table-body").innerHTML =
             "<tr><td>Terapkan filter untuk memuat laporan terbaru.</td></tr>";
@@ -9540,7 +9013,7 @@ var qrcode = function() {
           ],
           laporan: [
             "Pusat Laporan",
-            "Laporan rinci, rekapitulasi, dan ekspor sesuai kriteria",
+            "Daftar, rekap, dan kelengkapan surat dalam satu tempat.",
             "fa-print",
           ],
           "upload-dokumen": [
@@ -9573,7 +9046,7 @@ var qrcode = function() {
           titles[viewKey]=[userPageMode==='access'?'Hak Akses User':'Daftar User',userPageMode==='access'?'Izin halaman dan tindakan':'Pengelolaan akun aplikasi','fa-users'];
           renderUsers();loadUsers();
         }
-        if(viewKey==='laporan')loadCanonicalMetadata(archiveMetadataGeneration!==dataGeneration||Date.now()-archiveMetadataAt>=READ_CACHE_TTL);
+        if(viewKey==='laporan')enterReportPage();
         if(refKind) titles[viewKey]=[referenceSpecs[refKind].title,"Referensi data aplikasi","fa-book"];
         if (titles[viewKey]) {
           document.getElementById("current-view-title").innerHTML =
@@ -13772,7 +13245,7 @@ var qrcode = function() {
       const REPORT_COLUMNS = {
         nomorLengkap: "Nomor Surat",
         tanggal: "Tanggal Surat",
-        kategoriName: "Kategori",
+        kategoriName: "Jenis Naskah",
         perihal: "Perihal",
         pengirim: "Pengirim / Penandatangan",
         tujuan: "Tujuan",
@@ -13783,16 +13256,6 @@ var qrcode = function() {
         keterangan: "Keterangan",
         waktuInput: "Waktu Pencatatan",
       };
-      const REPORT_TYPES = {
-        register: "Register Surat Keluar",
-        nota: "Register Nota Dinas",
-        summary: "Rekapitulasi Surat",
-        status: "Status Penyelesaian",
-        documents: "Kelengkapan Dokumen",
-        numbering: "Penggunaan Nomor",
-        staff: "Aktivitas Petugas",
-        custom: "Laporan Kustom",
-      };
       let reportState = {
         snapshot: null,
         rows: [],
@@ -13802,6 +13265,7 @@ var qrcode = function() {
         busy: false,
         epoch: 0,
         settings: null,
+        resultView: "detail", pageSize:25, initialized:false, owner:"",
       };
       let reportExportCancelled = false,
         reportExportBusy = false;
@@ -13858,7 +13322,7 @@ var qrcode = function() {
           setUiValue("laporan-tgl-awal", a);
           setUiValue("laporan-tgl-akhir", b);
         }
-        markReportDirty();
+        syncReportFilterUi();markReportDirty();
       }
       function categoryLabel(key) {
         const m = KATEGORI_META[key];
@@ -14032,67 +13496,37 @@ var qrcode = function() {
         const selected=checkedValues('report-category');
         const keys=activeArchiveCategories.filter(k=>KATEGORI_META[k]).sort((a,b)=>categoryLabel(a).localeCompare(categoryLabel(b),'id'));
         list.innerHTML=keys.map(k=>'<label class="check-option"><input type="checkbox" name="report-category" value="'+escapeHtml(k)+'" '+(selected.includes(k)?'checked':'')+'>'+escapeHtml(categoryLabel(k))+'</label>').join('')||'<p class="hint" role="status">'+(archiveMetadataError?'Pilihan jenis belum tersedia. Muat ulang untuk mencoba lagi.':archiveMetadataGeneration<0?'Memuat jenis naskah yang memiliki data…':'Belum ada jenis naskah dengan data surat.')+'</p>';
-        filterCategoryChecks(document.getElementById('report-category-search')?.value||'');
-      }
-      function filterCategoryChecks(text) {
-        document
-          .querySelectorAll("#report-category-list label")
-          .forEach(
-            (e) =>
-              (e.hidden = !e.textContent
-                .toLowerCase()
-                .includes(text.toLowerCase())),
-          );
+        if(selected.some(k=>!keys.includes(k)))markReportDirty();else syncReportFilterUi();
       }
       function selectReportCategories(all) {
-        document
-          .querySelectorAll('[name="report-category"]')
-          .forEach((e) => (e.checked = all));
-        markReportDirty();
-      }
-      function onReportTypeChange() {
-        const type = uiValue("report-type");
-        document.getElementById("report-number-state").disabled =
-          type !== "numbering";
-        setUiValue("report-group", type === "nota" ? "ND" : "SEMUA");
-        setUiValue(
-          "report-mode",
-          ["summary", "staff"].includes(type) ? "summary" : "detail",
-        );
-        setUiValue(
-          "report-group-by",
-          type === "staff"
-            ? "diinputOleh"
-            : type === "summary"
-              ? "kategoriName"
-              : "",
-        );
+        document.querySelectorAll('[name="report-category"]').forEach(e=>e.checked=all);
         markReportDirty();
       }
       function collectReportFilters() {
-        return {
-          reportType: uiValue("report-type") || "register",
-          tglAwal: uiValue("laporan-tgl-awal"),
-          tglAkhir: uiValue("laporan-tgl-akhir"),
-          dateBasis: uiValue("report-date-basis"),
-          group: uiValue("report-group"),
-          categories: checkedValues("report-category").join("|"),
-          statuses: checkedValues("report-status").join("|"),
-          sifat: checkedValues("report-sifat").join("|"),
-          year: uiValue("report-year"),
-          document: uiValue("report-document"),
-          sender: uiValue("report-sender"),
-          recipient: uiValue("report-recipient"),
-          staff: uiValue("report-staff"),
-          search: uiValue("report-search"),
-          numberFrom: uiValue("report-number-from"),
-          numberTo: uiValue("report-number-to"),
-          numberState: uiValue("report-number-state"),
-          mode: uiValue("report-mode"),
-          groupBy: uiValue("report-group-by"),
-          sort: uiValue("report-sort"),
-          direction: uiValue("report-direction"),
-        };
+        return {reportType:'register',tglAwal:uiValue('laporan-tgl-awal'),tglAkhir:uiValue('laporan-tgl-akhir'),dateBasis:uiValue('report-date-basis')||'tanggal',group:'SEMUA',categories:checkedValues('report-category').join('|'),statuses:uiValue('report-filter-status'),sifat:uiValue('report-filter-sifat'),document:uiValue('report-document')||'all',search:uiValue('report-search'),mode:'detail',groupBy:'',sort:'tanggal',direction:'desc'};
+      }
+      function syncReportFilterUi() {
+        const dateFields=document.getElementById('report-custom-dates');if(!dateFields)return;
+        dateFields.hidden=uiValue('report-period')!=='custom';
+        document.getElementById('report-period-caption').textContent='Periode: '+(uiValue('laporan-tgl-awal')||'—')+' s.d. '+(uiValue('laporan-tgl-akhir')||'—');
+        const selected=checkedValues('report-category');
+        document.getElementById('report-category-caption').textContent=selected.length===1?categoryLabel(selected[0]):selected.length?selected.length+' jenis dipilih':'Semua Jenis';
+        const f=collectReportFilters(),labels=[];
+        if(f.statuses)labels.push(['report-filter-status','Status: '+reportStatusLabel(f.statuses)]);
+        if(f.sifat)labels.push(['report-filter-sifat','Sifat: '+f.sifat]);
+        if(f.document!=='all')labels.push(['report-document',f.document==='present'?'Sudah Ada Dokumen':'Belum Ada Dokumen']);
+        if(f.dateBasis!=='tanggal')labels.push(['report-date-basis','Tanggal Pencatatan']);
+        if(f.search.trim())labels.push(['report-search','Kata kunci: '+f.search.trim()]);
+        document.getElementById('report-filter-chips').innerHTML=labels.map(([id,label])=>'<button type="button" class="filter-chip" data-filter="'+id+'" onclick="clearReportFilter(this.dataset.filter)" aria-label="Hapus '+escapeHtml(label)+'">'+escapeHtml(label)+' ×</button>').join('');
+      }
+      function reportStatusLabel(value){return ({Draft:'Draf','Ditandatangani':'Tanda Tangan','Sudah Kirim':'Terkirim','Sudah Terima':'Sudah Diterima'})[value]||value;}
+      async function enterReportPage(){
+        const owner=(currentUser?.username||'')+':'+getApiUrl();
+        if(reportState.owner!==owner){reportState.owner=owner;reportState.initialized=false;reportState.snapshot=null;reportState.resultView='detail';reportState.pageSize=25;setUiValue('report-page-size','25');resetReportFilters(false);}
+        const first=!reportState.initialized,epoch=reportState.epoch;reportState.initialized=true;
+        await loadCanonicalMetadata(archiveMetadataGeneration!==dataGeneration||Date.now()-archiveMetadataAt>=READ_CACHE_TTL);
+        if(owner!==reportState.owner||activeWorkspaceView!=='laporan')return;
+        if(first&&epoch===reportState.epoch)await generatePreviewReport();else {ensureReportFresh();updateReportButtons();}
       }
       function collectReportSettings() {
         return {
@@ -14119,34 +13553,28 @@ var qrcode = function() {
         const e = document.getElementById("report-status");
         if (e) e.textContent = text;
       }
+      function reportRowCount(){return reportState.resultView==='summary'?(reportState.snapshot?.meta.byCategory?.length||0):(reportState.snapshot?.meta.totalRows||0);}
       function updateReportButtons() {
-        const ready =
-          !!reportState.snapshot &&
-          !reportState.dirty &&
-          !reportState.busy &&
-          !reportExportBusy;
-        ["report-print", "report-xlsx", "report-csv"].forEach((id) => {
-          const e = document.getElementById(id);
-          if (e) e.disabled = !ready;
-        });
-        const apply = document.getElementById("report-apply");
-        if (apply) apply.disabled = reportState.busy || reportExportBusy;
-        const prev = document.getElementById("report-prev"),
-          next = document.getElementById("report-next");
-        if (prev) prev.disabled = !ready || reportState.page === 0;
-        if (next)
-          next.disabled =
-            !ready ||
-            reportState.page + 1 >= (reportState.snapshot?.meta.pages || 0);
+        const ready=!!reportState.snapshot&&!reportState.dirty&&!reportState.busy&&!reportExportBusy;
+        ['report-print','report-xlsx','report-csv'].forEach(id=>{const el=document.getElementById(id);if(el)el.disabled=!ready||!canAccess('reports','export');});
+        document.getElementById('report-apply').disabled=reportState.busy||reportExportBusy;
+        document.getElementById('report-apply').innerHTML=reportState.busy?'<span class="saving-spinner" aria-hidden="true"></span> Memuat…':'Tampilkan';
+        document.getElementById('report-prev').disabled=!ready||reportState.page===0;
+        document.getElementById('report-next').disabled=!ready||(reportState.page+1)*reportState.pageSize>=reportRowCount();
+        document.getElementById('report-page-size').disabled=reportState.busy||reportExportBusy;
+        document.querySelectorAll('.report-result-tabs button').forEach(el=>el.disabled=reportState.busy||reportExportBusy);
+        document.getElementById('report-results').dataset.stale=String(reportState.dirty);
+        document.getElementById('report-results').setAttribute('aria-busy',String(reportState.busy));
+        if(reportState.snapshot&&reportState.dirty)document.getElementById('report-summary').textContent='Hasil sebelumnya — klik Tampilkan untuk memuat kriteria terbaru.';
       }
       function markReportDirty() {
-        reportState.epoch++;
-        reportState.dirty = true;
-        if (reportState.snapshot || reportState.busy)
-          reportStatus(
-            "Filter berubah atau data diperbarui — terapkan kembali untuk membuat laporan terbaru.",
-          );
+        reportState.epoch++;reportState.dirty=true;syncReportFilterUi();
+        reportStatus(reportState.snapshot||reportState.busy?'Kriteria atau data berubah. Klik Tampilkan untuk memperbarui hasil.':'Klik Tampilkan untuk memuat laporan.');
         updateReportButtons();
+      }
+      function ensureReportFresh(){
+        if(reportState.snapshot&&Date.now()>=reportState.snapshot.meta.expiresAt){reportState.dirty=true;reportStatus('Laporan sementara kedaluwarsa. Klik Tampilkan kembali.');document.getElementById('report-retry').hidden=false;updateReportButtons();return false;}
+        return !!reportState.snapshot&&!reportState.dirty;
       }
       async function reportRequest(action, params) {
         const response = await apiFetch(getApiUrl(), {
@@ -14154,70 +13582,32 @@ var qrcode = function() {
           headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify({ action, token: currentToken, data: params }),
         });
-        return response.json();
+        const result=await response.json();
+        if(!response.ok||!result.success)throw new Error(result.message||'Tidak dapat memuat laporan. Coba lagi.');
+        return result;
       }
       async function generatePreviewReport() {
-        if (reportState.busy || reportExportBusy) return;
-        reportState.busy = true;
-        reportState.dirty = true;
-        const epoch = ++reportState.epoch;
-        updateReportButtons();
-        reportStatus("Menyusun laporan sesuai kriteria…");
-        try {
-          const filters = collectReportFilters(),
-            settings = collectReportSettings();
-          if (
-            !filters.tglAwal ||
-            !filters.tglAkhir ||
-            filters.tglAwal > filters.tglAkhir
-          )
-            throw new Error("Isi rentang tanggal yang valid.");
-          if (
-            filters.mode !== "summary" &&
-            !["summary", "staff"].includes(filters.reportType) &&
-            !settings.columns.length
-          )
-            throw new Error("Pilih minimal satu kolom rincian.");
-          if (
-            (filters.numberFrom || filters.numberTo) &&
-            (!filters.year || checkedValues("report-category").length !== 1)
-          )
-            throw new Error(
-              "Rentang nomor memerlukan satu kategori dan tahun penomoran.",
-            );
-          const result = await reportRequest("report_create", filters);
-          if (epoch !== reportState.epoch) return;
-          if (!result.snapshotId || !result.meta || !Array.isArray(result.rows))
-            throw new Error("Pusat Laporan memerlukan backend versi terbaru.");
-          reportState.snapshot = result;
-          reportState.rows = result.rows;
-          reportState.page = 0;
-          reportState.pages = new Map([[0, result.rows]]);
-          reportState.settings = settings;
-          reportState.dirty = false;
-          document.getElementById("print-preview-container").style.display =
-            "block";
-          renderReportPreview();
-          reportStatus(
-            "Laporan siap. Dibuat " +
-              result.meta.generatedAt +
-              ". Cetak dan ekspor mencakup seluruh hasil.",
-          );
-        } catch (e) {
-          if (epoch === reportState.epoch) {
-            reportState.snapshot = null;
-            document.getElementById("print-preview-container").style.display =
-              "none";
-            document.getElementById("report-summary").textContent =
-              "Laporan belum tersedia.";
-            reportStatus("Laporan gagal: " + e.message);
-            showToast(e.message, "error");
-          }
-        } finally {
-          reportState.busy = false;
-          updateReportButtons();
-        }
+        if(reportState.busy||reportExportBusy||!canAccess('reports','view'))return;
+        reportState.busy=true;reportState.dirty=true;const epoch=++reportState.epoch;
+        document.getElementById('report-retry').hidden=true;updateReportButtons();reportStatus('Menyusun laporan…');
+        try{
+          const filters=collectReportFilters(),settings=collectReportSettings();
+          if(!filters.tglAwal||!filters.tglAkhir||filters.tglAwal>filters.tglAkhir)throw Error('Isi rentang tanggal yang valid.');
+          if(!settings.columns.length)throw Error('Pilih minimal satu kolom rincian.');
+          const result=await reportRequest('report_create',filters);if(epoch!==reportState.epoch)return;
+          if(!result.snapshotId||!Array.isArray(result.rows)||!Array.isArray(result.meta?.byCategory)||result.meta.breakdownVersion!==1)throw Error('Perbarui Report.gs pada Apps Script untuk menggunakan laporan ini.');
+          reportState.snapshot=result;reportState.pages=new Map([[0,result.rows]]);reportState.page=0;reportState.settings=settings;reportState.dirty=false;
+          setReportVisibleRows();document.getElementById('print-preview-container').style.display='block';renderReportPreview();
+          reportStatus('Laporan siap. Data dibuat '+result.meta.generatedAt+'.');
+        }catch(e){if(epoch===reportState.epoch){document.getElementById('report-retry').hidden=false;reportStatus('Laporan gagal: '+e.message);if(!reportState.snapshot){document.getElementById('report-summary').textContent='Laporan belum tersedia.';document.getElementById('report-table-body').innerHTML='<tr><td>Data belum dapat dimuat. Klik Coba Lagi.</td></tr>';clearReportMetrics();}showToast(e.message,'error');}}
+        finally{reportState.busy=false;updateReportButtons();}
       }
+      function setReportVisibleRows(){
+        const offset=reportState.page*reportState.pageSize;
+        reportState.rows=reportState.resultView==='summary'?reportState.snapshot.meta.byCategory.slice(offset,offset+reportState.pageSize):(reportState.pages.get(Math.floor(offset/100))||[]).slice(offset%100,offset%100+reportState.pageSize).map((it,i)=>({...it,reportNo:offset+i+1}));
+      }
+      function clearReportMetrics(){['total','in-progress','sent','missing'].forEach(k=>document.getElementById('report-'+k).textContent='—');document.getElementById('report-table-foot').innerHTML='';document.getElementById('report-page-label').textContent='';}
+
       function reportCell(it, key) {
         if (key === "tujuan")
           return it.ditujukanKepada || it.kepada || "Belum Tercatat";
@@ -14227,414 +13617,79 @@ var qrcode = function() {
           return /^https:\/\/drive\.google\.com\//.test(it.linkDrive || "")
             ? "Sudah Ada"
             : "Belum Ada";
+        if(key==="status")return reportStatusLabel(it.status);
         return it[key] ?? "Belum Tercatat";
       }
-      function reportColumnList() {
-        return reportState.snapshot?.meta.filters.mode === "summary"
-          ? [
-              ["group", "Kelompok"],
-              ["count", "Jumlah Surat"],
-              ["documents", "Ada Dokumen"],
-              ["reserved", "Nomor Cadangan"],
-            ]
-          : reportState.settings.columns.map((k) => [k, REPORT_COLUMNS[k]]);
-      }
-      function reportFilterLabels(f) {
-        const labels = [
-          ["report-type", "Jenis: " + REPORT_TYPES[f.reportType]],
-          ["report-period", f.tglAwal + " s.d. " + f.tglAkhir],
-          [
-            "report-date-basis",
-            "Dasar: " +
-              (f.dateBasis === "waktuInput"
-                ? "Tanggal Pencatatan"
-                : "Tanggal Surat"),
-          ],
-        ];
-        if (f.group !== "SEMUA")
-          labels.push(["report-group", "Kelompok: " + f.group]);
-        if (f.categories.length)
-          labels.push([
-            "report-category",
-            "Kategori: " + f.categories.map(categoryLabel).join(", "),
-          ]);
-        [
-          ["statuses", "report-status", "Status"],
-          ["sifat", "report-sifat", "Sifat"],
-          ["staff", "report-staff", "Petugas"],
-        ].forEach(([k, id, title]) => {
-          if (f[k].length) labels.push([id, title + ": " + f[k].join(", ")]);
-        });
-        [
-          ["year", "report-year", "Tahun nomor"],
-          ["sender", "report-sender", "Pengirim"],
-          ["recipient", "report-recipient", "Penerima"],
-          ["search", "report-search", "Pencarian"],
-        ].forEach(([k, id, title]) => {
-          if (f[k]) labels.push([id, title + ": " + f[k]]);
-        });
-        if (f.document !== "all")
-          labels.push([
-            "report-document",
-            "Dokumen: " +
-              (f.document === "present" ? "Sudah Ada" : "Belum Ada"),
-          ]);
-        if (f.reportType === "numbering")
-          labels.push([
-            "report-number-state",
-            "Nomor: " +
-              {
-                all: "Terpakai & Cadangan",
-                used: "Terpakai",
-                reserved: "Cadangan",
-              }[f.numberState],
-          ]);
-        if (f.numberFrom !== null || f.numberTo !== null)
-          labels.push([
-            "report-number-range",
-            "Nomor urut: " +
-              (f.numberFrom || "awal") +
-              "–" +
-              (f.numberTo || "akhir"),
-          ]);
+      function reportColumnList(){return reportState.resultView==='summary'?[['group','Jenis Naskah'],['count','Jumlah Surat'],['documents','Sudah Ada Dokumen'],['missing','Belum Ada Dokumen']]:[['reportNo','No.'],...(reportState.settings?.columns||[]).map(k=>[k,REPORT_COLUMNS[k]])];}
+      function reportFilterLabels(f){
+        const labels=[['report-period',f.tglAwal+' s.d. '+f.tglAkhir],['report-date-basis','Dasar: '+(f.dateBasis==='waktuInput'?'Tanggal Pencatatan':'Tanggal Surat')]];
+        if(f.categories?.length)labels.push(['report-category','Jenis: '+f.categories.map(categoryLabel).join(', ')]);
+        if(f.statuses?.length)labels.push(['report-filter-status','Status: '+f.statuses.map(reportStatusLabel).join(', ')]);
+        if(f.sifat?.length)labels.push(['report-filter-sifat','Sifat: '+f.sifat.join(', ')]);
+        if(f.search)labels.push(['report-search','Kata kunci: '+f.search]);
+        if(f.document!=='all')labels.push(['report-document','Dokumen: '+(f.document==='present'?'Sudah Ada':'Belum Ada')]);
         return labels;
       }
-      function renderReportPreview() {
-        const result = reportState.snapshot;
-        if (!result) return;
-        const m = result.meta,
-          cols = reportColumnList();
-        document.getElementById("report-summary").textContent =
-          m.totalItems.toLocaleString("id-ID") +
-          " surat cocok • " +
-          m.summary.documents +
-          " memiliki dokumen • " +
-          m.summary.reserved +
-          " nomor cadangan";
-        document.getElementById("report-table-head").innerHTML =
-          "<tr>" +
-          cols
-            .map(
-              ([, label]) => '<th scope="col">' + escapeHtml(label) + "</th>",
-            )
-            .join("") +
-          "</tr>";
-        document.getElementById("report-table-body").innerHTML = reportState
-          .rows.length
-          ? reportState.rows
-              .map(
-                (it) =>
-                  "<tr>" +
-                  cols
-                    .map(
-                      ([key]) =>
-                        "<td>" + escapeHtml(reportCell(it, key)) + "</td>",
-                    )
-                    .join("") +
-                  "</tr>",
-              )
-              .join("")
-          : '<tr><td colspan="' +
-            cols.length +
-            '">Tidak ada surat sesuai kriteria. Ubah periode atau hapus sebagian filter.</td></tr>';
-        document.getElementById("report-filter-chips").innerHTML =
-          reportFilterLabels(m.filters)
-            .map(
-              ([id, label]) =>
-                '<button class="filter-chip" type="button" data-filter="' +
-                id +
-                '" onclick="clearReportFilter(this.dataset.filter)" title="Ubah atau hapus filter">' +
-                escapeHtml(label) +
-                " ×</button>",
-            )
-            .join("");
-        document.getElementById("report-group-summary").textContent =
-          (m.filters.groupBy
-            ? "Dikelompokkan menurut " +
-              {
-                kategoriName: "kategori",
-                bulan: "bulan",
-                status: "status",
-                tujuan: "tujuan",
-                diinputOleh: "petugas",
-              }[m.filters.groupBy] +
-              ". Subtotal ditampilkan dalam cetak/ekspor. "
-            : "") +
-          (m.summary.unknownDates
-            ? m.summary.unknownDates +
-              " baris dengan tanggal belum tercatat tidak termasuk periode ini."
-            : "");
-        document.getElementById("report-page-label").textContent =
-          "Halaman " +
-          (reportState.page + 1) +
-          " dari " +
-          Math.max(1, m.pages) +
-          " • " +
-          m.totalRows +
-          " baris hasil • " +
-          m.totalItems +
-          " surat keseluruhan";
+      function renderReportPreview(){
+        const result=reportState.snapshot;if(!result)return;const m=result.meta,cols=reportColumnList();
+        document.getElementById('report-summary').textContent=m.totalItems.toLocaleString('id-ID')+' surat · '+m.filters.tglAwal+' s.d. '+m.filters.tglAkhir;
+        Object.entries({total:m.totalItems,'in-progress':m.summary.inProgress,sent:m.summary.sent,missing:m.summary.missing}).forEach(([k,v])=>document.getElementById('report-'+k).textContent=Number(v||0).toLocaleString('id-ID'));
+        document.getElementById('report-table-head').innerHTML='<tr>'+cols.map(([,label])=>'<th scope="col">'+escapeHtml(label)+'</th>').join('')+'</tr>';
+        document.getElementById('report-table-body').innerHTML=reportState.rows.length?reportState.rows.map(it=>'<tr>'+cols.map(([key])=>'<td data-column="'+key+'">'+escapeHtml(reportCell(it,key))+'</td>').join('')+'</tr>').join(''):'<tr><td colspan="'+cols.length+'">Tidak ada surat sesuai kriteria. Ubah periode atau hapus filter.</td></tr>';
+        document.getElementById('report-table-foot').innerHTML=reportState.resultView==='summary'?'<tr><th scope="row">Total keseluruhan</th><td>'+m.totalItems+'</td><td>'+m.summary.documents+'</td><td>'+m.summary.missing+'</td></tr>':'';
+        document.getElementById('report-group-summary').textContent=m.summary.unknownDates?m.summary.unknownDates+' surat tanpa tanggal yang valid tidak termasuk periode ini.':'';
+        document.getElementById('report-page-label').textContent=reportRowCount()+' '+(reportState.resultView==='summary'?'jenis':'surat')+' · Halaman '+(reportState.page+1)+'/'+Math.max(1,Math.ceil(reportRowCount()/reportState.pageSize));
+        syncReportResultTabs();
       }
-      function clearReportFilter(id) {
-        if (id === "report-category") checkValues("report-category", []);
-        else if (id === "report-status" || id === "report-sifat")
-          checkValues(id, []);
-        else if (id === "report-number-range") {
-          setUiValue("report-number-from", "");
-          setUiValue("report-number-to", "");
-        } else if (id === "report-period") {
-          setUiValue(id, "month");
-          setReportPeriod("month");
-        } else if (id === "report-type") {
-          setUiValue(id, "register");
-          onReportTypeChange();
-        } else
-          setUiValue(
-            id,
-            {
-              "report-group": "SEMUA",
-              "report-document": "all",
-              "report-number-state": "all",
-              "report-date-basis": "tanggal",
-            }[id] || "",
-          );
-        markReportDirty();
+      function syncReportResultTabs(){
+        const summary=reportState.resultView==='summary';
+        [['report-detail-tab',!summary],['report-recap-tab',summary]].forEach(([id,active])=>{const el=document.getElementById(id);el.setAttribute('aria-selected',String(active));el.tabIndex=active?0:-1;});
+        document.getElementById('report-result-panel').setAttribute('aria-labelledby',summary?'report-recap-tab':'report-detail-tab');document.getElementById('report-column-panel').hidden=summary;
       }
-      async function goReportPage(delta) {
-        if (
-          reportState.busy ||
-          reportState.dirty ||
-          !reportState.snapshot ||
-          reportExportBusy
-        )
-          return;
-        const page = reportState.page + delta,
-          id = reportState.snapshot.snapshotId,
-          epoch = reportState.epoch;
-        if (page < 0 || page >= reportState.snapshot.meta.pages) return;
-        reportState.busy = true;
-        updateReportButtons();
-        reportStatus("Memuat halaman " + (page + 1) + "…");
-        try {
-          const rows =
-            reportState.pages.get(page) ||
-            (await reportRequest("report_page", { snapshotId: id, page })).rows;
-          if (epoch !== reportState.epoch) return;
-          reportState.pages.set(page, rows);
-          reportState.page = page;
-          reportState.rows = rows;
-          renderReportPreview();
-          reportStatus(
-            "Halaman siap. Cetak/ekspor tetap mencakup seluruh hasil.",
-          );
-        } catch (e) {
-          reportState.dirty = true;
-          reportStatus(e.message);
-          showToast(e.message, "error");
-        } finally {
-          reportState.busy = false;
-          updateReportButtons();
-        }
+      function setReportResultView(view){if(!['detail','summary'].includes(view)||reportState.busy||reportExportBusy)return;reportState.resultView=view;reportState.page=0;syncReportResultTabs();if(reportState.snapshot){setReportVisibleRows();renderReportPreview();}ensureReportFresh();updateReportButtons();}
+      function clearReportFilter(id){setUiValue(id,({'report-document':'all','report-date-basis':'tanggal'})[id]||'');markReportDirty();}
+      async function goReportPage(delta){
+        if(reportState.busy||reportExportBusy||!ensureReportFresh())return;
+        const page=reportState.page+delta;if(page<0||page>=Math.ceil(reportRowCount()/reportState.pageSize))return;
+        const epoch=reportState.epoch,id=reportState.snapshot.snapshotId,serverPage=Math.floor(page*reportState.pageSize/100);
+        reportState.busy=true;updateReportButtons();reportStatus('Memuat halaman '+(page+1)+'…');
+        try{if(reportState.resultView==='detail'&&!reportState.pages.has(serverPage)){
+          const result=await reportRequest('report_page',{snapshotId:id,page:serverPage});if(epoch!==reportState.epoch)return;
+          if(!Array.isArray(result.rows))throw Error('Halaman laporan tidak valid. Tampilkan kembali.');reportState.pages.set(serverPage,result.rows);
+        }if(epoch!==reportState.epoch)return;reportState.page=page;setReportVisibleRows();renderReportPreview();reportStatus('Halaman siap. Ekspor mencakup seluruh hasil.');}
+        catch(e){if(epoch===reportState.epoch){reportState.dirty=true;document.getElementById('report-retry').hidden=false;reportStatus(e.message);}}
+        finally{reportState.busy=false;updateReportButtons();}
       }
-      function presetKey() {
-        return (
-          "KPU_REPORT_PRESETS_V2:" + (currentUser?.username || "anonymous")
-        );
+      function changeReportPageSize(value){if(reportState.busy||reportExportBusy)return;reportState.pageSize=[25,50,100].includes(Number(value))?Number(value):25;reportState.page=0;if(reportState.snapshot){setReportVisibleRows();renderReportPreview();}ensureReportFresh();updateReportButtons();}
+      function resetReportFilters(load=true){
+        if(reportState.busy||reportExportBusy)return;
+        document.getElementById('report-controls').reset();checkValues('report-category',[]);setUiValue('report-period','month');setReportPeriod('month');document.getElementById('report-extra-filters').open=false;document.getElementById('report-category-picker').open=false;
+        if(load)generatePreviewReport();
       }
-      function personalPresets() {
-        try {
-          return JSON.parse(localStorage.getItem(presetKey()) || "{}");
-        } catch (e) {
-          return {};
-        }
+      function updateReportColumns(event){
+        if(reportExportBusy){event.target.checked=!event.target.checked;return;}
+        const columns=checkedValues('report-column');if(!columns.length){event.target.checked=true;showToast('Pilih minimal satu kolom.','info');return;}
+        if(reportState.settings){reportState.settings.columns=columns;if(reportState.snapshot)renderReportPreview();updateReportButtons();}
       }
-      const BUILTIN_PRESETS = {
-        monthly: {
-          name: "Register Surat Keluar Bulanan",
-          values: { reportType: "register" },
-        },
-        nota: {
-          name: "Nota Dinas per Jabatan",
-          values: { reportType: "nota", group: "ND", groupBy: "kategoriName" },
-        },
-        unsigned: {
-          name: "Ditandatangani tetapi Belum Dikirim",
-          values: { reportType: "status", statuses: "Ditandatangani" },
-        },
-        missing: {
-          name: "Surat Tanpa Dokumen",
-          values: { reportType: "documents", document: "missing" },
-        },
-        annual: {
-          name: "Rekap Tahunan per Kategori",
-          period: "year",
-          values: {
-            reportType: "summary",
-            mode: "summary",
-            groupBy: "kategoriName",
-          },
-        },
-        reserved: {
-          name: "Nomor Cadangan Belum Digunakan",
-          values: { reportType: "numbering", numberState: "reserved" },
-        },
-        staff: {
-          name: "Rekap Pencatatan per Petugas",
-          values: {
-            reportType: "staff",
-            mode: "summary",
-            groupBy: "diinputOleh",
-          },
-        },
-      };
-      function renderReportPresets() {
-        const e = document.getElementById("report-preset");
-        if (!e) return;
-        e.innerHTML =
-          '<option value="">Pilih preset…</option>' +
-          Object.entries(BUILTIN_PRESETS)
-            .map(
-              ([k, v]) =>
-                '<option value="builtin:' + k + '">' + v.name + "</option>",
-            )
-            .join("") +
-          Object.keys(personalPresets())
-            .map(
-              (k) =>
-                '<option value="personal:' +
-                escapeHtml(k) +
-                '">' +
-                escapeHtml(k) +
-                " · Pribadi</option>",
-            )
-            .join("");
-      }
-      const FILTER_FIELDS = {
-        reportType: "report-type",
-        tglAwal: "laporan-tgl-awal",
-        tglAkhir: "laporan-tgl-akhir",
-        dateBasis: "report-date-basis",
-        group: "report-group",
-        year: "report-year",
-        document: "report-document",
-        sender: "report-sender",
-        recipient: "report-recipient",
-        staff: "report-staff",
-        search: "report-search",
-        numberFrom: "report-number-from",
-        numberTo: "report-number-to",
-        numberState: "report-number-state",
-        mode: "report-mode",
-        groupBy: "report-group-by",
-        sort: "report-sort",
-        direction: "report-direction",
-      };
-      function resetReportFilters() {
-        document.getElementById("report-controls")?.reset();
-        checkValues("report-category", []);
-        checkValues("report-status", []);
-        checkValues("report-sifat", []);
-        setUiValue("report-type", "register");
-        onReportTypeChange();
-        setUiValue("report-period", "month");
-        setReportPeriod("month");
-        filterCategoryChecks("");
-        reportStatus("Filter direset. Terapkan untuk memuat laporan.");
-      }
-      function applyReportPreset(key) {
-        if (!key) return;
-        const value = key.startsWith("builtin:")
-          ? BUILTIN_PRESETS[key.slice(8)]
-          : personalPresets()[key.slice(9)];
-        if (!value) return;
-        resetReportFilters();
-        Object.entries(value.values).forEach(([k, v]) => {
-          if (FILTER_FIELDS[k]) setUiValue(FILTER_FIELDS[k], v);
-        });
-        ["categories", "statuses", "sifat"].forEach((k, i) =>
-          checkValues(
-            ["report-category", "report-status", "report-sifat"][i],
-            String(value.values[k] || "").split("|"),
-          ),
-        );
-        document.getElementById("report-number-state").disabled =
-          uiValue("report-type") !== "numbering";
-        if (value.settings) {
-          checkValues("report-column", value.settings.columns);
-          Object.entries({
-            paper: "report-paper",
-            orientation: "report-orientation",
-            margin: "report-margin",
-            fontSize: "report-font-size",
-            signTitle: "report-sign-title",
-            signName: "report-sign-name",
-          }).forEach(([k, id]) => setUiValue(id, value.settings[k]));
-          ["Kop", "Sign", "Filters"].forEach(
-            (k) =>
-              (document.getElementById(
-                "report-show-" + k.toLowerCase(),
-              ).checked = !!value.settings["show" + k]),
-          );
-        }
-        setUiValue("report-period", value.period || "month");
-        if (value.period !== "custom") setReportPeriod(value.period || "month");
-        setUiValue("report-preset", key);
-        markReportDirty();
-      }
-      function saveReportPreset() {
-        const name = uiValue("report-preset-name").trim();
-        if (!name) {
-          showToast("Isi nama preset pribadi.", "error");
-          return;
-        }
-        try {
-          const all = personalPresets();
-          if (Object.keys(all).length >= 20 && !Object.hasOwn(all, name))
-            throw new Error(
-              "Maksimal 20 preset. Hapus preset lama terlebih dahulu.",
-            );
-          Object.defineProperty(all, name, {
-            value: {
-              values: collectReportFilters(),
-              settings: collectReportSettings(),
-              period: uiValue("report-period"),
-            },
-            enumerable: true,
-            configurable: true,
-            writable: true,
-          });
-          localStorage.setItem(presetKey(), JSON.stringify(all));
-          renderReportPresets();
-          setUiValue("report-preset", "personal:" + name);
-          showToast("Preset disimpan pada perangkat ini.");
-        } catch (e) {
-          showToast(e.message, "error");
-        }
-      }
-      function deleteReportPreset() {
-        const key = uiValue("report-preset");
-        if (!key.startsWith("personal:")) {
-          showToast("Pilih preset pribadi yang akan dihapus.", "info");
-          return;
-        }
-        try {
-          const all = personalPresets();
-          delete all[key.slice(9)];
-          localStorage.setItem(presetKey(), JSON.stringify(all));
-          renderReportPresets();
-          showToast("Preset pribadi dihapus.");
-        } catch (e) {
-          showToast(e.message, "error");
-        }
-      }
+      function toggleReportSignature(){const enabled=document.getElementById('report-show-sign').checked;document.getElementById('report-sign-fields').hidden=!enabled;['report-sign-title','report-sign-name'].forEach(id=>document.getElementById(id).required=enabled);}
+      function openReportPrint(){if(!canAccess('reports','export')||reportState.busy||reportExportBusy||!ensureReportFresh())return;toggleReportSignature();document.getElementById('report-print-error').textContent='';document.getElementById('report-print-dialog').showModal();document.getElementById('report-paper').focus();}
+      function closeReportPrint(){document.getElementById('report-print-dialog').close();document.getElementById('report-print').focus();}
+      function confirmReportPrint(){if(document.getElementById('report-show-sign').checked&&(!uiValue('report-sign-title').trim()||!uiValue('report-sign-name').trim())){document.getElementById('report-print-error').textContent='Isi jabatan dan nama pengesah.';return;}reportState.settings=collectReportSettings();closeReportPrint();exportReport('print');}
       function cancelReportExport() {
         reportExportCancelled = true;
         reportStatus("Membatalkan penyusunan ekspor…");
       }
       async function collectAllReportRows() {
+        if(!ensureReportFresh())throw Error('Tampilkan laporan kembali sebelum mengekspor.');
         const epoch = reportState.epoch,
           snapshot = reportState.snapshot,
           all = [];
+        if(reportState.resultView==='summary'){
+          const verified=await reportRequest('report_page',{snapshotId:snapshot.snapshotId,page:0,forExport:true});
+          if(epoch!==reportState.epoch||reportExportCancelled)throw Error('Ekspor dibatalkan.');
+          if(!Array.isArray(verified.meta?.byCategory))throw Error('Rekap tidak tersedia. Tampilkan laporan kembali.');
+          return verified.meta.byCategory;
+        }
         for (let page = 0; page < snapshot.meta.pages; page++) {
           if (reportExportCancelled || epoch !== reportState.epoch)
             throw new Error(
@@ -14670,7 +13725,7 @@ var qrcode = function() {
           throw new Error(
             "Hasil laporan tidak lengkap. Terapkan filter kembali.",
           );
-        return all;
+        return all.map((it,i)=>({...it,reportNo:i+1}));
       }
       function exportReportRows(rows) {
         const cols = reportColumnList(),
@@ -14679,6 +13734,7 @@ var qrcode = function() {
         rows.forEach((it) =>
           result.push(cols.map(([key]) => reportCell(it, key))),
         );
+        if(reportState.resultView==='summary')result.push(['Total keseluruhan',reportState.snapshot.meta.totalItems,reportState.snapshot.meta.summary.documents,reportState.snapshot.meta.summary.missing]);
         return result;
       }
       function csvCell(value) {
@@ -14702,6 +13758,9 @@ var qrcode = function() {
           m = reportState.snapshot.meta,
           f = m.filters,
           cols = reportColumnList();
+        const columnWeights = {reportNo:5,nomorLengkap:18,tanggal:11,kategoriName:14,perihal:28,pengirim:16,tujuan:18,keterangan:24,group:40};
+        const totalWeight = cols.reduce((sum,[key])=>sum+(columnWeights[key]||12),0);
+        const columnWidths = cols.map(([key])=>'<col style="width:'+((columnWeights[key]||12)*100/totalWeight).toFixed(2)+'%">').join('');
         const groupValue = (it) =>
           f.groupBy === "bulan"
             ? String(it[f.dateBasis] || "").slice(0, 7)
@@ -14742,7 +13801,7 @@ var qrcode = function() {
             "<tr>" +
             cols
               .map(
-                ([key]) => "<td>" + escapeHtml(reportCell(it, key)) + "</td>",
+                ([key]) => '<td'+(key==='reportNo'?' style="white-space:nowrap"':'')+'>' + escapeHtml(reportCell(it, key)) + "</td>",
               )
               .join("") +
             "</tr>";
@@ -14763,7 +13822,7 @@ var qrcode = function() {
             s.orientation === "landscape" ? 210 : s.paper === "F4" ? 330 : 297;
         return (
           '<!doctype html><html lang="id"><head><meta charset="utf-8"><title>' +
-          escapeHtml(REPORT_TYPES[f.reportType]) +
+          escapeHtml(reportState.resultView==='summary'?'Rekap Surat per Jenis':'Daftar Surat') +
           "</title><style>@page{size:" +
           width +
           "mm " +
@@ -14772,12 +13831,12 @@ var qrcode = function() {
           s.margin +
           'mm;@bottom-right{content:"Halaman " counter(page) " / " counter(pages);font-size:8pt;}}body{font:' +
           s.fontSize +
-          "pt Arial,sans-serif;color:#111}header{text-align:center;border-bottom:3px double #111;padding-bottom:12px;margin-bottom:16px}header img{height:55px;float:left}h1{font-size:14pt;text-align:center}h2{font-size:12pt;margin:4px}p{line-height:1.5}table{border-collapse:collapse;width:100%;table-layout:fixed}th,td{border:1px solid #777;padding:5px;vertical-align:top;overflow-wrap:anywhere}thead{display:table-header-group}tr{break-inside:avoid}th,.group{background:#eef2f6}.subtotal{font-weight:bold;background:#f8fafc}footer{margin-top:20px;display:flex;justify-content:space-between;break-inside:avoid}.sign{text-align:center;min-width:180px}.muted{font-size:8pt;color:#444}</style></head><body>" +
+          "pt Arial,sans-serif;color:#111}header{text-align:center;border-bottom:3px double #111;padding-bottom:12px;margin-bottom:16px}header img{height:55px;float:left}h1{font-size:14pt;text-align:center}h2{font-size:12pt;margin:4px}p{line-height:1.5}table{border-collapse:collapse;width:100%;table-layout:fixed}th,td{border:1px solid #777;padding:5px;vertical-align:top;overflow-wrap:anywhere}thead{display:table-header-group}tr,.report-ending{break-inside:avoid}.report-ending .report-print-footer{border:0;padding:0}th,.group{background:#eef2f6}.subtotal{font-weight:bold;background:#f8fafc}footer{margin-top:20px;display:flex;justify-content:space-between;break-inside:avoid}.sign{text-align:center;min-width:180px}.muted{font-size:8pt;color:#444}</style></head><body>" +
           (s.showKop
             ? '<header><img src="https://www.kpu.go.id/images/1627539868logo-kpu.png" alt="KPU"><h2>KOMISI PEMILIHAN UMUM REPUBLIK INDONESIA</h2><h2>PUSAT DATA DAN TEKNOLOGI INFORMASI</h2><p>Jalan Imam Bonjol No. 29 Jakarta 10310</p></header>'
             : "") +
           "<h1>" +
-          escapeHtml(REPORT_TYPES[f.reportType]) +
+          escapeHtml(reportState.resultView==='summary'?'Rekap Surat per Jenis':'Daftar Surat') +
           "</h1><p>Periode: " +
           f.tglAwal +
           " s.d. " +
@@ -14797,24 +13856,22 @@ var qrcode = function() {
               m.summary.unknownDates +
               " baris dengan tanggal belum tercatat tidak termasuk hasil.</p>"
             : "") +
-          "<table><thead><tr>" +
+          "<table><colgroup>" + columnWidths + "</colgroup><thead><tr>" +
           cols
             .map(([, label]) => "<th>" + escapeHtml(label) + "</th>")
             .join("") +
           "</tr></thead><tbody>" +
           body +
-          '<tr class="subtotal"><td colspan="' +
-          cols.length +
-          '">Total keseluruhan: ' +
-          m.totalItems +
-          ' surat</td></tr></tbody></table><footer><div class="muted">Dicetak oleh: ' +
+          '</tbody><tbody class="report-ending">' +
+          (reportState.resultView==='summary'?'<tr class="subtotal"><td>Total keseluruhan</td><td>'+m.totalItems+'</td><td>'+m.summary.documents+'</td><td>'+m.summary.missing+'</td></tr>':'<tr class="subtotal"><td colspan="'+cols.length+'">Total keseluruhan: '+m.totalItems+' surat</td></tr>') +
+          '<tr><td colspan="'+cols.length+'" class="report-print-footer"><footer><div class="muted">Dicetak oleh: ' +
           escapeHtml(s.printedBy) +
           "<br>Data laporan: " +
           escapeHtml(m.generatedAt) +
           "<br>Waktu cetak: " +
           escapeHtml(new Date().toLocaleString("id-ID")) +
           "</div>" +
-          (s.showSign
+          (s.showSign && s.signTitle.trim() && s.signName.trim()
             ? '<div class="sign">Mengetahui,<br>' +
               escapeHtml(s.signTitle) +
               "<br><br><br><br>" +
@@ -14823,7 +13880,7 @@ var qrcode = function() {
               ) +
               "</div>"
             : "") +
-          "</footer></body></html>"
+          "</footer></td></tr></tbody></table></body></html>"
         );
       }
       async function exportReport(format) {
@@ -14835,6 +13892,11 @@ var qrcode = function() {
           reportExportBusy
         )
           return;
+        if(!ensureReportFresh())return;
+        if(!['print','xlsx','csv'].includes(format))return;
+        if(format==='print'&&document.getElementById('report-show-sign').checked&&(!uiValue('report-sign-title').trim()||!uiValue('report-sign-name').trim())){showToast('Lengkapi identitas pengesah.','info');return;}
+        reportState.settings=collectReportSettings();
+        document.getElementById('report-download-menu').open=false;
         reportExportBusy = true;
         reportExportCancelled = false;
         document.getElementById("report-cancel-export").hidden = false;
@@ -14844,7 +13906,7 @@ var qrcode = function() {
           if (reportExportCancelled) throw new Error("Ekspor dibatalkan.");
           const name =
             "Laporan-" +
-            reportState.snapshot.meta.filters.reportType +
+            (reportState.resultView==='summary'?'rekap-per-jenis':'daftar-surat') +
             "-" +
             reportState.snapshot.meta.filters.tglAwal;
           if (format === "csv")
@@ -14993,44 +14055,14 @@ var qrcode = function() {
                 return {
                   date: (Date.parse(value) - Date.UTC(1899, 11, 30)) / 86400000,
                 };
-              if (["count", "documents", "reserved"].includes(key))
+              if (["count", "documents", "missing", "reportNo"].includes(key))
                 return Number(value) || 0;
               return String(value);
             }),
           ),
         ];
-        const summary = [
-          ["Kelompok", "Jumlah Surat", "Ada Dokumen", "Nomor Cadangan"],
-        ];
-        if (f.mode === "summary")
-          rows.forEach((it) =>
-            summary.push([it.group, it.count, it.documents, it.reserved]),
-          );
-        else {
-          const groups = new Map();
-          rows.forEach((it) => {
-            const group =
-              f.groupBy === "bulan"
-                ? String(it[f.dateBasis] || "").slice(0, 7)
-                : f.groupBy === "tujuan"
-                  ? reportCell(it, "tujuan")
-                  : f.groupBy
-                    ? String(it[f.groupBy] || "Belum Tercatat")
-                    : "Semua Surat";
-            const g = groups.get(group) || [group, 0, 0, 0];
-            g[1]++;
-            if (reportCell(it, "dokumen") === "Sudah Ada") g[2]++;
-            if (["DILOMPATI", "DIBOOKING"].includes(it.status)) g[3]++;
-            groups.set(group, g);
-          });
-          summary.push(...groups.values());
-        }
-        summary.push([
-          "Total",
-          meta.totalItems,
-          meta.summary.documents,
-          meta.summary.reserved,
-        ]);
+        const summary = [['Jenis Naskah','Jumlah Surat','Sudah Ada Dokumen','Belum Ada Dokumen'],...meta.byCategory.map(it=>[it.group,it.count,it.documents,it.missing]),['Total keseluruhan',meta.totalItems,meta.summary.documents,meta.summary.missing]];
+        if(reportState.resultView==='summary')details.push(['Total keseluruhan',meta.totalItems,meta.summary.documents,meta.summary.missing]);
         const criteria = [
           ["Kriteria", "Nilai"],
           ...reportFilterLabels(f).map(([, v]) => {
@@ -15061,13 +14093,13 @@ var qrcode = function() {
           '"><sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><cols>' +
           data[0]
             .map(
-              (_, i) =>
+              (label, i) =>
                 '<col min="' +
                 (i + 1) +
                 '" max="' +
                 (i + 1) +
                 '" width="' +
-                (i === 0 ? 32 : 24) +
+                (label === "No." ? 6 : ["Perihal","Keterangan"].includes(label) ? 48 : i === 0 || label === "Nomor Surat" ? 32 : 24) +
                 '" customWidth="1"/>',
             )
             .join("") +
@@ -15330,7 +14362,7 @@ var qrcode = function() {
           (b) => b.getAttribute("onclick")?.includes("pengaturan"),
         );
         if (btn) btn.hidden = currentUser?.role !== "admin";
-        renderReportPresets();applyAccessControls();
+        applyAccessControls();
       }
       function installModalAccessibility() {
         [
@@ -15449,33 +14481,14 @@ var qrcode = function() {
           const err = document.getElementById(event.target.id + "-error");
           if (err) err.remove();
         });
-        document
-          .getElementById("report-controls")
-          .addEventListener("input", (event) => {
-            if (
-              [
-                "report-preset",
-                "report-preset-name",
-                "report-category-search",
-              ].includes(event.target.id)
-            )
-              return;
-            setUiValue("report-preset", "");
-            if (
-              event.target.id === "laporan-tgl-awal" ||
-              event.target.id === "laporan-tgl-akhir"
-            )
-              setUiValue("report-period", "custom");
-            markReportDirty();
-          });
-        document
-          .getElementById("report-controls")
-          .addEventListener("change", (event) => {
-            if (event.target.id !== "report-preset") {
-              setUiValue("report-preset", "");
-              markReportDirty();
-            }
-          });
+        const reportControls=document.getElementById('report-controls');
+        reportControls.addEventListener('input',event=>{if(['laporan-tgl-awal','laporan-tgl-akhir'].includes(event.target.id))setUiValue('report-period','custom');markReportDirty();});
+        reportControls.addEventListener('change',()=>markReportDirty());
+        document.getElementById('report-columns').addEventListener('change',updateReportColumns);
+        document.querySelectorAll('.report-result-tabs button').forEach(el=>el.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const target=e.key==='Home'?'detail':e.key==='End'?'summary':reportState.resultView==='detail'?'summary':'detail';setReportResultView(target);document.getElementById(target==='detail'?'report-detail-tab':'report-recap-tab').focus();}}));
+        document.getElementById('report-category-picker').addEventListener('keydown',e=>{if(e.key==='Escape'){e.currentTarget.open=false;e.currentTarget.querySelector('summary').focus();}});
+        document.addEventListener('click',e=>{['report-category-picker','report-download-menu'].forEach(id=>{const el=document.getElementById(id);if(el.open&&!el.contains(e.target))el.open=false;});});
+        document.getElementById('report-print-dialog').addEventListener('close',()=>document.getElementById('report-print').focus());
         window.addEventListener("beforeunload", (e) => {
           const recovered=persistWorkspaceRecovery();
           if (formDirty&&!recovered) {
@@ -15496,8 +14509,9 @@ var qrcode = function() {
                 "tanggal",
                 "perihal",
                 "tujuan",
-                "sifat",
+                "kategoriName",
                 "status",
+                "dokumen",
               ].includes(k)
                 ? "checked"
                 : "") +
@@ -15509,7 +14523,6 @@ var qrcode = function() {
         syncCategoryControls();
         renderArchiveCategoryFilter();
         setReportPeriod("month");
-        renderReportPresets();
         const detail = document.querySelector("#view-detail-surat>div");
         if (detail) {
           const copy = document.createElement("button");
