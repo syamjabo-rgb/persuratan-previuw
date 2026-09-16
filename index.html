@@ -389,6 +389,13 @@
         color: #334155;
       }
 
+      #header-work-year strong {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text-main);
+        line-height: 1.2;
+      }
+
       .status-dot {
         width: 8px;
         height: 8px;
@@ -2347,7 +2354,7 @@
           gap: 12px;
           flex-wrap: wrap;
         }
-        .page-header h2 {
+        .page-header h2, #header-work-year strong {
           font-size: 18px;
         }
         .page-header p {
@@ -5382,7 +5389,7 @@ var qrcode = function() {
         <!-- VIEW 1: DASHBOARD -->
         <section id="view-referensi-folder" class="view-section">
           <div id="reference-page-content" class="glass-card ref-page">
-            <div class="ref-heading"><div><span class="ref-eyebrow">REFERENSI APLIKASI</span><h2 id="reference-page-title">Folder G Drive</h2><p id="reference-page-description">Kelola folder penyimpanan dokumen berdasarkan jabatan dan jenis naskah.</p></div><button id="folder-year-migrate" type="button" class="btn btn-secondary" hidden onclick="migrateFolderPeriod()">Migrasi Periode Folder 2026</button><button id="reference-add" class="btn btn-primary" hidden onclick="openReferenceForm()">Tambah Folder</button></div>
+            <div class="ref-heading"><div><span class="ref-eyebrow">REFERENSI APLIKASI</span><h2 id="reference-page-title">Folder G Drive</h2><p id="reference-page-description">Kelola folder penyimpanan dokumen berdasarkan jabatan dan jenis naskah.</p></div><button id="reference-add" class="btn btn-primary" hidden onclick="openReferenceForm()">Tambah Folder</button></div>
             <div class="ref-toolbar">
               <label class="ref-search">Cari referensi<input id="reference-search" class="form-control" type="search" placeholder="Cari kode, nama, atau uraian…" oninput="referenceFilter('search',this.value)" /></label>
               <label>Status<select id="reference-status" class="form-control" onchange="referenceFilter('status',this.value)"><option value="all">Semua Status</option><option value="active">Aktif</option><option value="inactive">Nonaktif</option></select></label>
@@ -5452,7 +5459,7 @@ var qrcode = function() {
             <form
               id="reference-form"
               onsubmit="saveReferenceForm(event)"
-              oninput="referenceDirty = true"
+              oninput="referenceDirty = true; updateReferenceCodeWarning()"
             >
               <fieldset
                 id="reference-fieldset"
@@ -5796,7 +5803,7 @@ var qrcode = function() {
 
               <h3 class="form-section-title">2. Penomoran</h3>
               <!-- MODERN OPTION BAR SWITCH TIPE PENOMORAN (DI ATAS LIVE PREVIEW) -->
-              <div class="penomoran-switch-container">
+              <div class="penomoran-switch-container" id="numbering-mode-controls">
                 <div class="penomoran-switch-label">
                   <i aria-hidden="true" class="fa-solid fa-sliders"></i> Mode
                   Penomoran:
@@ -5866,7 +5873,7 @@ var qrcode = function() {
               <!-- 4 KOMPONEN INPUT NOMOR SURAT -->
               <div class="form-row">
                 <div class="form-group">
-                  <label>1. Nomor Urut <span class="req">*</span></label>
+                  <label id="label-nomor-urut" for="input-nomor-urut">1. Nomor Urut <span class="req">*</span></label>
                   <input
                     type="text"
                     id="input-nomor-urut"
@@ -5878,7 +5885,7 @@ var qrcode = function() {
                   />
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="group-kode-klasifikasi">
                   <label
                     >2. Kode Klasifikasi KPU <span class="req">*</span>
                     <small
@@ -5936,7 +5943,7 @@ var qrcode = function() {
                 </div>
 
                 <div class="form-group">
-                  <label>4. Kode Tahun <span class="req">*</span></label>
+                  <label id="label-kode-tahun" for="input-tahun">4. Kode Tahun <span class="req">*</span></label>
                   <input
                     type="number"
                     id="input-tahun"
@@ -6351,7 +6358,7 @@ var qrcode = function() {
                 <select
                   id="filter-kategori"
                   class="form-control"
-                  
+
                 >
                   <option value="SEMUA" selected>
                     Semua Jenis Naskah Dinas
@@ -6368,7 +6375,7 @@ var qrcode = function() {
                   type="date"
                   id="filter-tgl-awal"
                   class="form-control"
-                  
+
                 />
               </div>
 
@@ -6381,7 +6388,7 @@ var qrcode = function() {
                   type="date"
                   id="filter-tgl-akhir"
                   class="form-control"
-                  
+
                 />
               </div>
 
@@ -6393,7 +6400,7 @@ var qrcode = function() {
               ><select
                 class="form-control"
                 id="filter-status"
-                
+
               >
                 <option value="SEMUA">Semua Status</option>
                 <option value="Draft">Draf</option>
@@ -6405,7 +6412,7 @@ var qrcode = function() {
               ><select
                 class="form-control"
                 id="filter-document"
-                
+
               >
                 <option value="all">Semua</option>
                 <option value="present">Sudah Ada</option>
@@ -7705,7 +7712,7 @@ var qrcode = function() {
       // ==========================================
       const CONFIG = {
         DEFAULT_API_URL:
-          "https://script.google.com/macros/s/AKfycbythjQVoDZI8fQMccaVgTz7Oe-4tY0y9KYISC4PlAeokyt1OUtCoazCRuWBuBaWcCA2/exec",
+          "https://script.google.com/macros/s/AKfycbyQhvkx20_vxieQSZFB2q9qUue9ZpejqWXSSw9z0PpCXEmah8dY4tVa_EY9vxzNTutt/exec",
         STORAGE_TOKEN_KEY: "KPU_SURAT_SESSION_TOKEN",
         STORAGE_USER_KEY: "KPU_SURAT_SESSION_USER",
         STORAGE_API_KEY: "KPU_SURAT_API_URL",
@@ -7930,6 +7937,7 @@ var qrcode = function() {
         const customUrl = localStorage.getItem(CONFIG.STORAGE_API_KEY);
         if (
           !customUrl ||
+          customUrl === "https://script.google.com/macros/s/AKfycbythjQVoDZI8fQMccaVgTz7Oe-4tY0y9KYISC4PlAeokyt1OUtCoazCRuWBuBaWcCA2/exec" ||
           customUrl.includes(
             "AKfycbypcQ8buw3THqRWK0ai0dZ6YpMyW0SwV485BbC4nS6qKDE1HsWi7mtx6olR6Mm_cGRx",
           ) ||
@@ -8885,6 +8893,32 @@ var qrcode = function() {
       // ==========================================
       // 5. LIVE PREVIEW & FORM LOGIC
       // ==========================================
+function usesNomorTahunFormat(conf) {
+  var name=String(conf && conf.name || '').trim().toLowerCase().replace(/\s+/g,' ');
+  return /^(peraturan (kpu|komisi pemilihan umum)|surat edaran|instruksi|standar operasional prosedur(?: \(sop\))?|sop|(?:surat )?keputusan)(?:$| )/.test(name);
+}
+function usesManualJobCode(name) {
+  return /^(sekretaris jenderal(?: (?:kpu|komisi pemilihan umum))?|ketua (?:kpu|komisi pemilihan umum))$/i.test(String(name||'').trim().replace(/\s+/g,' '));
+}
+      function usesDirectManualNumber() {
+        const item=window.currentEditingSurat;
+        return usesManualJobCode(selectedSigner()?.nama || item?.penandaTangan || item?.dari) || usesNomorTahunFormat(KATEGORI_META[uiValue('input-kategori')]);
+      }
+      function syncNumberingFields() {
+        const input=document.getElementById('input-kode-jabatan'),item=window.currentEditingSurat;
+        const manual=usesManualJobCode(selectedSigner()?.nama),simple=usesNomorTahunFormat(KATEGORI_META[uiValue('input-kategori')]);
+        input.readOnly=!!item||!manual;
+        input.required=!simple;
+        input.placeholder=manual?'Ketik Kode Jabatan':'';
+        document.getElementById('group-kode-jabatan').hidden=simple;
+        document.getElementById('group-kode-jabatan').style.display=simple?'none':'';
+        document.getElementById('group-kode-klasifikasi').hidden=simple;
+        document.getElementById('group-kode-klasifikasi').style.display=simple?'none':'';
+        document.getElementById('input-klasifikasi').required=!simple;
+        document.getElementById('label-nomor-urut').innerHTML=(simple?'1. Nomor':'1. Nomor Urut')+' <span class="req">*</span>';
+        document.getElementById('label-kode-tahun').innerHTML=(simple?'2. Tahun':'4. Kode Tahun')+' <span class="req">*</span>';
+        document.getElementById('signer-feedback').textContent=simple?'Isi Nomor dan Tahun. Format nomor: NOMOR … TAHUN ….':manual?'Kode Jabatan diketik secara manual untuk penanda tangan ini.':'Kode Jabatan mengikuti penanda tangan. Pilihan terkunci saat edit.';
+      }
       function onKategoriChanged(autoFetch = true) {
         const kat = document.getElementById("input-kategori").value;
         const meta = KATEGORI_META[kat] || { type: "SK", code: "B" };
@@ -8899,8 +8933,8 @@ var qrcode = function() {
         fieldsSK.style.display=isND?'none':'block';
         fieldsND.style.display=isND?'block':'none';
         const signer=selectedSigner();
-        if(!window.currentEditingSurat){jbtInput.value=signer?.kode||'';document.getElementById('input-nd-dari').value=signer?.nama||'';}
-        jbtInput.readOnly=true;
+        if(!window.currentEditingSurat){if(!usesManualJobCode(signer?.nama))jbtInput.value=signer?.kode||'';document.getElementById('input-nd-dari').value=signer?.nama||'';}
+        syncNumberingFields();
         updateLivePreview();
       }
 
@@ -8931,7 +8965,7 @@ var qrcode = function() {
           document.getElementById("input-klasifikasi")?.value || "___"
         ).trim();
         const jabatan = (
-          document.getElementById("input-kode-jabatan")?.value || "13"
+          document.getElementById("input-kode-jabatan")?.value || "___"
         ).trim();
         const tglVal = document.getElementById("input-tanggal")?.value;
         const tahun = tglVal
@@ -8940,7 +8974,9 @@ var qrcode = function() {
             new Date().getFullYear();
 
         // Format Baku KPU: [NOMOR URUT] / [KODE KLASIFIKASI]-[KODE KATEGORI] / [KODE JABATAN] / [TAHUN]
-        const nomorLengkap = `${noUrut}/${klasifikasi}-${meta.code}/${jabatan}/${tahun}`;
+        let nomorLengkap = usesNomorTahunFormat(meta) ? `NOMOR ${rawNoUrut ? Number(rawNoUrut) : "___"} TAHUN ${tahun}` : `${noUrut}/${klasifikasi}-${meta.code}/${jabatan}/${tahun}`;
+        const stored=window.currentEditingSurat;
+        if(stored?.nomorLengkap&&kat===stored.sheetName&&Number(rawNoUrut)===Number(stored.nomorUrut)&&String(tahun)===String(stored.kodeTahun)&&uiValue('input-klasifikasi').trim()===String(stored.kodeKlasifikasi||'').trim()&&uiValue('input-kode-jabatan').trim()===String(stored.kodeJabatan??'').trim())nomorLengkap=stored.nomorLengkap;
         const previewEl = document.getElementById("preview-nomor-lengkap");
         if (previewEl) previewEl.innerText = nomorLengkap;
         return nomorLengkap;
@@ -8975,6 +9011,17 @@ var qrcode = function() {
       }
 
       function renderNumberingTabs() {
+        const manual=usesDirectManualNumber(),input=document.getElementById('input-nomor-urut');
+        document.getElementById('numbering-mode-controls').style.display=manual?'none':'';
+        input.placeholder=manual?'Ketik nomor surat':'Pilih mode penomoran';
+        if(manual){
+          numbering.mode='manual';
+          input.disabled=numbering.busy||numbering.autoFormLocked||!uiValue('input-kategori');
+          input.readOnly=false;
+          input.inputMode='numeric';
+          input.pattern='[0-9]+';
+        }else{input.removeAttribute('pattern');input.removeAttribute('inputmode');}
+
         ["auto", "custom"].forEach((mode) => {
           const button = document.getElementById("opt-penomoran-" + mode);
           if (!button) return;
@@ -8983,7 +9030,7 @@ var qrcode = function() {
           button.setAttribute("aria-selected", String(active));
           button.tabIndex = active ? 0 : -1;
           button.disabled =
-            !selectedSigner() || !document.getElementById("input-kategori").value ||
+            manual || !selectedSigner() || !document.getElementById("input-kategori").value ||
             !!window.currentEditingSurat ||
             numbering.busy || numbering.autoFormLocked ||
             (mode === "auto" && numbering.autoBusy);
@@ -9019,14 +9066,14 @@ var qrcode = function() {
         numbering.epoch++;
         nomorRequestId++;
         numbering.mode = "auto";
-        if(!window.currentEditingSurat)document.getElementById('input-nomor-urut').value='';
+        if(!window.currentEditingSurat&&!usesDirectManualNumber())document.getElementById('input-nomor-urut').value='';
         document.getElementById('input-nomor-urut').disabled=true;
         _currentMundurRowIndex = null;
         finishAutoLoading();
       }
 
       function setOpsiPenomoran(mode) {
-        if (window.currentEditingSurat || numbering.busy) return;
+        if (usesDirectManualNumber() || window.currentEditingSurat || numbering.busy) return;
         if (
           !currentToken ||
           !document.getElementById("input-kategori").value ||
@@ -9059,7 +9106,7 @@ var qrcode = function() {
       }
 
       async function prosesAutoNomorUI(lockForm = KATEGORI_META[document.getElementById("input-kategori").value]?.type === "ND") {
-        if(!selectedSigner()||!document.getElementById("input-kategori").value)return;
+        if(usesDirectManualNumber()||!selectedSigner()||!document.getElementById("input-kategori").value)return;
         if (numbering.autoBusy || numbering.busy || window.currentEditingSurat)
           return;
         if (numbering.open) tutupModalCustom();
@@ -9105,7 +9152,7 @@ var qrcode = function() {
 
       function bukaModalCustom() {
         if(!canAccess('numbering','view')){showToast('Anda tidak memiliki izin tindakan ini.','info');return;}
-        if(!selectedSigner()||!document.getElementById("input-kategori").value)return;
+        if(usesDirectManualNumber()||!selectedSigner()||!document.getElementById("input-kategori").value)return;
         if (numbering.open || numbering.busy || window.currentEditingSurat)
           return;
         numbering.epoch++;
@@ -9273,9 +9320,10 @@ var qrcode = function() {
           last = window._lompatMaxNomor + jumlah;
         const meta =
           KATEGORI_META[document.getElementById("input-kategori").value];
-        const suffix = `/XX.YY.Z-${meta?.code || "SD"}/${document.getElementById("input-kode-jabatan").value || meta?.jbtCode || "13"}/${document.getElementById("input-tahun").value}`;
-        document.getElementById("lompat-preview-text").textContent =
-          `Booking ${padZeroJS(first)}${suffix} sampai ${padZeroJS(last)}${suffix} (${jumlah} nomor). Nomor aktif: ${padZeroJS(last + 1)}.`;
+        const suffix = `/XX.YY.Z-${meta?.code || "SD"}/${document.getElementById("input-kode-jabatan").value || "___"}/${document.getElementById("input-tahun").value}`;
+        document.getElementById("lompat-preview-text").textContent = usesNomorTahunFormat(meta)
+          ? `Booking NOMOR ${first} TAHUN ${uiValue('input-tahun')} sampai NOMOR ${last} TAHUN ${uiValue('input-tahun')} (${jumlah} nomor). Nomor aktif: ${last+1}.`
+          : `Booking ${padZeroJS(first)}${suffix} sampai ${padZeroJS(last)}${suffix} (${jumlah} nomor). Nomor aktif: ${padZeroJS(last + 1)}.`;
       }
 
       function setCustomBusy(busy) {
@@ -9324,9 +9372,7 @@ var qrcode = function() {
                 tahun: Number(document.getElementById("input-tahun").value),
                 kodeKlasifikasi: "XX.YY.Z",
                 kodeJabatan:
-                  document.getElementById("input-kode-jabatan").value ||
-                  KATEGORI_META[kat]?.jbtCode ||
-                  "13",
+                  document.getElementById("input-kode-jabatan").value,
               },
             }),
           });
@@ -9544,12 +9590,13 @@ var qrcode = function() {
 
         if (!noUrutVal) {
           showToast(
-            "Pilih Auto Nomor atau Penomoran Khusus terlebih dahulu.",
+            usesDirectManualNumber() ? "Isi Nomor surat secara manual." : "Pilih Auto Nomor atau Penomoran Khusus terlebih dahulu.",
             "error",
           );
           return;
         }
-        if (!uiValue("input-klasifikasi")) {showToast("Pilih Kode Klasifikasi terlebih dahulu.", "error");return;}
+        if(usesDirectManualNumber()&&(!/^[0-9]+$/.test(noUrutVal)||!Number.isSafeInteger(Number(noUrutVal))||Number(noUrutVal)<1)){showToast('Nomor harus berupa bilangan bulat lebih dari 0.','error');return;}
+        if (!usesNomorTahunFormat(meta) && !uiValue("input-klasifikasi")) {showToast("Pilih Kode Klasifikasi terlebih dahulu.", "error");return;}
         if (!tglVal) {
           showToast("Tanggal surat wajib diisi!", "error");
           return;
@@ -9564,9 +9611,7 @@ var qrcode = function() {
           kategoriSheet: kat,
           sheetName: kat,
           nomorUrut: noUrutVal,
-          kodeKlasifikasi: document
-            .getElementById("input-klasifikasi")
-            .value.trim(),
+          kodeKlasifikasi: usesNomorTahunFormat(meta) ? (window.currentEditingSurat?.kodeKlasifikasi || '') : uiValue('input-klasifikasi').trim(),
           kodeJabatan: document
             .getElementById("input-kode-jabatan")
             .value.trim(),
@@ -11658,6 +11703,20 @@ var qrcode = function() {
       /**
        * Menjalankan proses edit objek surat
        */
+      function ensureStoredEditCategory() {
+        const item=window.currentEditingSurat;
+        if(!item?.sheetName)return;
+        const key=item.sheetName,known=KATEGORI_META[key];
+        if(!known){
+          const ref=referenceData?.data?.jenis?.find(t=>t.id===item.jenisId||t.sheetName===key);
+          const code=String(item.nomorLengkap||'').match(/^[^/]+\/[^/]+-([^/]+)\/[^/]*\/\d{4}$/)?.[1];
+          KATEGORI_META[key]={name:item.kategoriName||ref?.nama||key,type:item.isNotaDinas?'ND':ref?.kelompok||'SK',code:code||ref?.kode||(item.isNotaDinas?'ND':''),active:false};
+        }
+        const select=document.getElementById('input-kategori');
+        select.innerHTML=`<option value="${escapeHtml(key)}">${escapeHtml(item.kategoriName||KATEGORI_META[key].name||key)}</option>`;
+        select.value=key;
+        select.disabled=true;
+      }
       function mulaiEditSuratObj(item) {
         if(!canAccess('archive','edit')){showToast('Anda tidak memiliki izin tindakan ini.','info');return;}
         if (!item) return;
@@ -11666,6 +11725,7 @@ var qrcode = function() {
         // Buka view input-surat tanpa reset
         switchView("input-surat", false);
 
+        ensureStoredEditCategory();
         // Isi Kategori
         const catSelect = document.getElementById("input-kategori");
         if (catSelect && item.sheetName) {
@@ -11679,7 +11739,7 @@ var qrcode = function() {
         document.getElementById("input-klasifikasi").value =
           item.kodeKlasifikasi || "";
         document.getElementById("input-kode-jabatan").value =
-          item.kodeJabatan || "13";
+          item.kodeJabatan ?? "";
         document.getElementById("input-tahun").value =
           item.kodeTahun || new Date().getFullYear();
         document.getElementById("input-penanggung-jawab").value=item.penanggungJawab||"";
@@ -11694,7 +11754,7 @@ var qrcode = function() {
 
         // Isi Field Dinamis (Nota Dinas vs Surat Dinas Umum)
         const meta = KATEGORI_META[item.sheetName] || {};
-        if (meta.type === "ND") {
+        if (item.isNotaDinas || meta.type === "ND") {
           document.getElementById("input-nd-kepada").value =
             item.kepada || item.ditujukanKepada || "";
           document.getElementById("input-nd-dari").value =
@@ -14271,7 +14331,7 @@ var qrcode = function() {
         const running=bulkFolderJob?.state==='running';
         for(const id of ['bulk-audit','bulk-folder-input','bulk-folder-check','bulk-folder-run','bulk-map-missing'])document.getElementById(id).disabled=busy||running;
         document.getElementById('bulk-folder-check').disabled=busy||running||bulkAudit?.state!=='done';
-        document.getElementById('bulk-force-drive').disabled=busy||running||bulkAudit?.state==='running';
+        document.getElementById('bulk-force-drive').disabled=busy||running;
         document.getElementById('bulk-pause').hidden=!busy||!bulkMode;document.getElementById('bulk-pause').disabled=false;
         document.getElementById('bulk-resume').hidden=busy;
         document.querySelectorAll('.bulk-pick').forEach(el=>el.disabled=busy);
@@ -14297,8 +14357,8 @@ var qrcode = function() {
         missingButton.textContent='Petakan Folder';
         const noMapping=(audit?.jobs||[]).filter(j=>!items.some(i=>i.jabatanId===j.id&&(i.mappingCount||i.mappingId)));
         const incomplete=[...new Set(items.filter(i=>i.status!=='ready'&&i.status!=='pending').map(i=>i.jenis))];
-        const coverage=document.getElementById('bulk-coverage');coverage.innerHTML=audit?.state==='done'?`<p><strong>Jabatan tanpa pemetaan:</strong> ${escapeHtml(noMapping.map(j=>j.nama).join(', ')||'Tidak ada')}</p><p><strong>Jenis naskah belum lengkap:</strong> ${escapeHtml(incomplete.join(', ')||'Tidak ada')}</p>`:'';
-        (audit?.issues||[]).forEach(issue=>{const p=document.createElement('p');p.textContent='⚠ '+issue.message+' ';const b=document.createElement('button');b.type='button';b.className='btn btn-secondary';b.textContent='Perbaiki Referensi';b.onclick=()=>repairBulkReference(issue.kind,issue.id);p.append(b);coverage.append(p);});
+        const coverage=document.getElementById('bulk-coverage');coverage.innerHTML=audit?.state==='done'?`<p><strong>Jabatan aktif diperiksa:</strong> ${(audit.jobs||[]).length}</p><p><strong>Jabatan baru sejak pemeriksaan terakhir:</strong> ${escapeHtml((audit.addedJobs||[]).map(j=>j.nama).join(', ')||'Tidak ada')}</p><p><strong>Jabatan tanpa pemetaan:</strong> ${escapeHtml(noMapping.map(j=>j.nama).join(', ')||'Tidak ada')}</p><p><strong>Jenis naskah belum lengkap:</strong> ${escapeHtml(incomplete.join(', ')||'Tidak ada')}</p>`:'';
+        (audit?.issues||[]).forEach(issue=>{const p=document.createElement('p');p.textContent='⚠ '+issue.message+' ';const b=document.createElement('button');b.type='button';b.className='btn btn-secondary';b.textContent=issue.action==='configure_database'?'Pilih Jenis di Generate DB':'Perbaiki Referensi';b.onclick=()=>issue.action==='configure_database'?switchView('generate-db'):repairBulkReference(issue.kind,issue.id);p.append(b);coverage.append(p);});
         const job=bulkFolderJob;
         const display=items;
         const groups=new Map();display.forEach(i=>{if(!groups.has(i.jabatan))groups.set(i.jabatan,[]);groups.get(i.jabatan).push(i);});
@@ -14410,12 +14470,6 @@ var qrcode = function() {
       function referenceView(){return referenceViews[referenceKind] ||= {search:'',status:'all',sort:referenceKind==='folder'?'jabatanId':'kode',dir:1,page:1,size:25,related:null};}
       function referenceFilter(key,value){const v=referenceView();v[key]=value;v.page=1;renderReferences();}
       function referenceSort(key){const v=referenceView();v.dir=v.sort===key?-v.dir:1;v.sort=key;v.page=1;renderReferences();}
-      async function migrateFolderPeriod(){
-        if(currentUser?.role!=='admin'||referenceBusy)return;
-        const button=document.getElementById('folder-year-migrate');button.disabled=true;
-        try{const response=await apiFetch(getApiUrl(),{method:'POST',body:JSON.stringify({action:'reference_migrate_folder_year',token:currentToken})});const result=await response.json();if(!result.success)throw Error(result.message);showToast(result.message,'success');invalidateClientData();await loadReferences();renderReferences();}
-        catch(e){showToast(e.message,'error');}finally{button.disabled=false;}
-      }
       function referenceRowsForView(){
         const v=referenceView(),rows=referenceData?.data?.[referenceKind]||[],q=v.search.trim().toLocaleLowerCase('id');
         return rows.filter(r=>(referenceKind!=='folder'||String(r.year)===workYear)&&(v.status==='all'||r.active===(v.status==='active'))&&(!v.related||r[v.related.field]===v.related.id)&&Object.keys(referenceSpecs[referenceKind].fields).some(k=>String(referenceLabel(k,r[k])||'').toLocaleLowerCase('id').includes(q))).sort((a,b)=>{
@@ -14424,11 +14478,10 @@ var qrcode = function() {
         });
       }
       function renderReferences(){
-        document.getElementById('folder-year-migrate').hidden=referenceKind!=='folder'||currentUser?.role!=='admin';
         const admin=canAccess(referenceKind,'edit'),canCreate=canAccess(referenceKind,'create'),isAdmin=currentUser?.role==='admin',ready=referenceData?.ready,v=referenceView(),all=(referenceData?.data?.[referenceKind]||[]).filter(r=>referenceKind!=='folder'||String(r.year)===workYear),locked=referenceBusy||!!referenceToggle||referenceLoading;
         document.getElementById('reference-search').value=v.search;document.getElementById('reference-status').value=v.status;
         document.getElementById('reference-add').textContent='Tambah '+referenceNames[referenceKind];
-        for(const id of ['reference-add','reference-init','reference-bulk','folder-year-migrate'])document.getElementById(id).disabled=locked;
+        for(const id of ['reference-add','reference-init','reference-bulk'])document.getElementById(id).disabled=locked;
         document.getElementById('reference-add').hidden=!canCreate||!ready;document.getElementById('reference-init').hidden=!isAdmin||!!ready;
         document.getElementById('reference-bulk').hidden=!isAdmin||!ready||referenceKind!=='folder';
         document.getElementById('reference-retry').hidden=!referenceError;
@@ -14519,12 +14572,25 @@ var qrcode = function() {
             })
             .join("") +
           `<label class="check-option"><input name="active" type="checkbox" ${row.active !== false ? "checked" : ""}> Aktif</label>`;
+        if(referenceKind==='jabatan'){
+          document.getElementById('ref-kode').setAttribute('aria-describedby','reference-code-warning');
+          document.getElementById('ref-kode').insertAdjacentHTML('afterend','<p id="reference-code-warning" class="ref-warning" role="status" aria-live="polite" hidden></p>');
+          updateReferenceCodeWarning();
+        }
         document.getElementById("reference-form-error").textContent = "";
         referenceDirty = false;
         switchView("referensi-input");
         document
           .querySelector("#reference-fields input, #reference-fields select")
           ?.focus();
+      }
+      function updateReferenceCodeWarning() {
+        const warning=document.getElementById('reference-code-warning');
+        if(referenceKind!=='jabatan'||!warning)return;
+        const code=document.getElementById('ref-kode').value.trim().toLowerCase();
+        const names=(referenceData?.data?.jabatan||[]).filter(r=>r.id!==referenceEdit?.id&&String(r.kode??'').trim().toLowerCase()===code).map(r=>r.nama);
+        warning.textContent=code&&names.length?'Peringatan: kode ini sudah digunakan oleh '+names.join(', ')+'. Kode tetap dapat digunakan dan disimpan.':'';
+        warning.hidden=!warning.textContent;
       }
       function leaveReferenceForm() {
         if (referenceBusy) return;
@@ -14572,7 +14638,7 @@ var qrcode = function() {
           const result=await res.json();if(!result.success)throw Error(result.message||'Gagal menyimpan pemetaan.');
           referenceDirty = false;
           await loadReferences();
-          showToast("Referensi berhasil disimpan.", "success");
+          showToast(result.warning ? "Referensi berhasil disimpan. " + result.warning : "Referensi berhasil disimpan.", result.warning ? "info" : "success");
           setReferenceBusy(false);
           switchView("referensi");
         } catch (e) {
@@ -14693,15 +14759,15 @@ var qrcode = function() {
         if(numbering.autoFormLocked){numbering.signerSyncPending=true;return;}
         const el=document.getElementById('input-penandatangan'),cat=document.getElementById('input-kategori'),old=el.value,item=window.currentEditingSurat;
         const jobs=referenceData?.ready?referenceData.data.jabatan.filter(j=>j.active&&(!databaseMode||Object.values(KATEGORI_META).some(m=>m.jabatanId===j.id&&m.year===(uiValue('input-tanggal').slice(0,4)||workYear)&&m.active))):[];
-        if(item){const name=item.isNotaDinas||KATEGORI_META[item.sheetName]?.type==='ND'?item.dari:item.penandaTangan;el.innerHTML=`<option value="__stored">${escapeHtml(name||'Tidak tercatat')} — Data tersimpan</option>`;el.disabled=true;cat.disabled=true;document.getElementById('input-kode-jabatan').value=item.kodeJabatan||'';}
+        if(item){ensureStoredEditCategory();const name=item.isNotaDinas||KATEGORI_META[item.sheetName]?.type==='ND'?item.dari:item.penandaTangan;el.innerHTML=`<option value="__stored">${escapeHtml(name||'Tidak tercatat')} — Data tersimpan</option>`;el.disabled=true;cat.disabled=true;document.getElementById('input-kode-jabatan').value=item.kodeJabatan||'';}
         else {el.innerHTML='<option value="">Pilih Penanda Tangan…</option>'+jobs.map(j=>`<option value="${escapeHtml(j.id)}">${escapeHtml(j.nama)}</option>`).join('');el.value=jobs.some(j=>j.id===old)?old:'';el.disabled=!referenceData?.ready||numbering.busy;cat.disabled=!selectedSigner()||numbering.busy;}
-        document.getElementById('input-kode-jabatan').readOnly=true;document.getElementById('input-nd-dari').readOnly=true;
+        syncNumberingFields();document.getElementById('input-nd-dari').readOnly=true;
         filterSignerCategories();renderNumberingTabs();
-        if(!item){const job=selectedSigner();if(document.getElementById('input-kode-jabatan').value!==(job?.kode||''))onSignerChanged();}
+        if(!item){const job=selectedSigner();if(!usesManualJobCode(job?.nama)&&document.getElementById('input-kode-jabatan').value!==(job?.kode||''))onSignerChanged();}
       }
       function filterSignerCategories(){
         const cat=document.getElementById('input-kategori'),item=window.currentEditingSurat,job=selectedSigner(),old=cat.value;
-        if(item)return;
+        if(item){ensureStoredEditCategory();return;}
         const keys=Object.keys(KATEGORI_META).filter(k=>{const m=KATEGORI_META[k];return job&&m.active!==false&&(m.type==='SK'||m.jabatanId===job.id)&&(!databaseMode||(m.jabatanId===job.id&&m.year===(uiValue('input-tanggal').slice(0,4)||workYear)));});
         cat.innerHTML='<option value="">Pilih Jenis Naskah Dinas…</option>'+keys.map(k=>`<option value="${escapeHtml(k)}">${escapeHtml(KATEGORI_META[k].name)}</option>`).join('');
         cat.value=keys.includes(old)?old:'';
@@ -14711,7 +14777,7 @@ var qrcode = function() {
         if(window.currentEditingSurat||numbering.busy)return;
         if(numbering.open)tutupModalCustom();
         nomorRequestId++;resetNumberingMode();_currentMundurRowIndex=null;
-        const job=selectedSigner();document.getElementById('input-kode-jabatan').value=job?.kode||'';document.getElementById('input-nd-dari').value=job?.nama||'';
+        const job=selectedSigner();document.getElementById('input-kode-jabatan').value=usesManualJobCode(job?.nama)?'':job?.kode||'';document.getElementById('input-nd-dari').value=job?.nama||'';
         document.getElementById('input-kategori').disabled=!job;
         document.getElementById('input-nomor-urut').value='';filterSignerCategories();onKategoriChanged(false);renderNumberingTabs();updateLivePreview();
       }
@@ -15010,7 +15076,7 @@ var qrcode = function() {
         const el=event.target;
         if(el.value&&el.value.slice(0,4)!==workYear){el.value='';event.stopImmediatePropagation();showToast('Pilih tanggal dalam periode '+workYear+'.','info');}
       }
-      function updateWorkYearHeader(){const el=document.getElementById('header-work-year');if(el)el.textContent='Periode Tahun: '+workYear;}
+      function updateWorkYearHeader(){const el=document.getElementById('header-work-year');if(el)el.innerHTML='<span>Periode Tahun:</span> <strong>'+escapeHtml(String(workYear))+'</strong>';}
       function updateArchiveYears(years){const el=document.getElementById('archive-year');if(!el)return;el.innerHTML='<option value="'+workYear+'">'+workYear+'</option>';el.value=workYear;el.disabled=true;updateWorkYearHeader();}
       updateWorkYearHeader();
       document.getElementById('db-year').value=workYear;
